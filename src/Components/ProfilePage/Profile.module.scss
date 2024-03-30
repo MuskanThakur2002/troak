@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Main container styling */
+.mainProfileContainer {
+    background-color: #20232a;
+    color: #61C15C;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Profile card */
+.profile {
+    background-color: #282c34;
+    /* Slightly lighter dark shade for the card */
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    /* Ideal for mobile screens */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Soft shadow for a floating effect */
+}
+
+/* User information section */
+.rectangle {
+    background-color: #282c34;
+    border: 2px solid #61C15C;
+    ;
+    /* Updated to vibrant green for emphasis */
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.userImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #61C15C;
+    padding: 10px;
+    /* Updated to vibrant green border around the image */
+    margin-bottom: 15px;
+}
+
+.userName,
+.userNumber {
+    color: #ffffff;
+    /* White for clarity */
+    margin: 5px 0;
+    /* Proper spacing */
+}
+
+.editOption {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #61C15C;
+    ;
+    /* Updated to vibrant green to stand out for edit/save icons */
+    cursor: pointer;
+}
+
+/* Icons and action areas */
+.column {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Spacing out the icon and text/amount */
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #333940;
+    /* Slightly different background for separation */
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+/* Logout button */
+.button {
+    background-color: #61C15C;
+    ;
+    /* Updated to vibrant green for the button */
+    color: #20232a;
+    /* Dark text for contrast */
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #5da558;
+    /* A darker shade of green on hover for feedback */
+}
+
+/* Adjustments for icons to ensure they align and match the theme */
+.icon,
+.arrowIcon {
+    color: #61C15C;
+    ;
+    /* Updated to vibrant green for a cohesive look */
+    margin-right: 8px;
+}
+
+/* Active state for the current section indicator */
+.active {
+    background-color: #61C15C;
+    ;
+    /* Updated to vibrant green background for active state */
+    color: #20232a;
+    /* Dark text for contrast */
+    font-weight: 500;
+}
+
+/* For making icons white */
+.icon {
+    filter: brightness(0) invert(1);
+    /* This filter will make icons white */
+}
+
+/* Additional space on the right, if needed for layout adjustments */
+.homeRightSpace {
+    width: 30px;
+}
+
+.amount {
+    width: 30px;
+    text-align: center;
+}

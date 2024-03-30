@@ -1,0 +1,150 @@
+.container {
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #171A1F66;
+  position: fixed;
+}
+
+
+.mainContainer {
+  top: 20%;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: #f8f8f8;
+  border-radius: 16px 16px 0px 0px;
+  position: absolute;
+}
+
+.closeIcon {
+  padding: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.popupContent {
+  padding: 20px;
+}
+
+.title {
+  font: Inter;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #1E2128FF;
+  margin-top: 20px;
+}
+
+.innerText {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #424856FF;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+
+.textareaContainer {
+  position: relative;
+  opacity: 1;
+}
+
+.textareaContainer textarea {
+  width: 100%;
+  /* Adjusted width considering total padding (10px left + 10px right) */
+  height: 164px;
+  padding: 10px;
+  /* Equal padding on all sides */
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #424856FF;
+  background: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid #9095A1FF;
+  box-sizing: border-box;
+  /* Ensures padding and border are included in the width */
+}
+
+.textareaContainer textarea:hover {
+  background: #FFFFFF;
+  border-color: #6F7787FF;
+}
+
+.textareaContainer textarea:focus {
+  background: #FFFFFF;
+  border-color: #9095A1FF;
+  box-shadow: 0px 0px 5px #9095a1;
+}
+
+.textareaContainer textarea:disabled {
+  color: #171A1FFF;
+  background: #FFFFFF;
+  border-color: #9095A1FF;
+}
+
+.buttonContainer {
+  position: absolute;
+  z-index: 1001;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+
+.button {
+  height: 44px;
+  padding: 0 16px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #FFFFFF;
+  background: #61C15CFF;
+  opacity: 1;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #43A33EFF;
+}
+
+.button:active {
+  background: #3A8D35FF;
+}
+
+.button:disabled {
+  opacity: 0.4;
+}
+
+
+.popupBottomContent {
+  margin-top: 40px;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  /* Horizontally center */
+  align-items: center;
+  /* Vertically center */
+}

@@ -1,0 +1,66 @@
+.headerFixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+
+  /* Adjust as needed */
+  // padding: 20px; /* Adjust padding as needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Optional: Add shadow */
+  // background: #000000; /* Black background */
+  color: #ffffff;
+
+}
+
+
+.header {
+  padding: 20px 10px 20px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: #171A1F;
+  /* Black background */
+  color: #ffffff;
+
+}
+
+.RewardsHeader {
+  padding: 20px 10px 20px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: #171A1F;
+  color: #ffffff;
+
+}
+
+
+.backImage {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  filter: invert(1);
+}
+
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  /* White color for contrast */
+}
+
+
+.headerFixedSpace {
+  height: 40px;
+}

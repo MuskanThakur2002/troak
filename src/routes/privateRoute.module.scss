@@ -1,0 +1,35 @@
+// .container {
+//   display: grid;
+//   grid-template-columns: 280px 1fr;
+//   background-size: contain;
+//   height: 100vh;
+//   width: 100%;
+
+//   .right_section {
+//     height: 100%;
+//     width: 100%;
+//     background-color: #fafafb;
+//     overflow: auto;
+
+//     .header {
+//       height: 6rem;
+//       background-color: white;
+//       margin-bottom: 20px;
+//       position: fixed;
+//       top: 0;
+//       left: 280px;
+//       z-index: 40;
+//       width: 100%;
+
+//       position: sticky;
+//       z-index: 999;
+//       box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
+//     }
+
+//     .outlet {
+//       height: 92vh;
+//       max-width: 1080px;
+//       margin: 6rem auto 0 auto;
+//     }
+//   }
+// }

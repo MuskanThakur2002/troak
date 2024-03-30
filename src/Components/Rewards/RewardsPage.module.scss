@@ -1,0 +1,107 @@
+// RewardsPage.module.scss
+
+.pageContainer {
+    background: #171A1F;
+    min-height: 100vh;
+    // color: white;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;    
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+
+    .backButton {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    h1 {
+        margin: 0;
+        padding: 0 0 10px 0;
+        font-size: 24px;
+    }
+
+    .summary {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        font-size: 18px;
+
+        &>div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+.totalValue,
+.rewards {
+    font-weight: bold;
+}
+
+.voucherList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.voucher {
+    background: #2C2F33;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+    &.expired {
+        background: #3c3c3c; // Dark gray background for expired rewards
+        .voucherAmount, .voucherExpiry {
+          color: #757575; // Dimmed color for expired reward text
+        }
+      }
+    
+}
+
+.voucherSource {
+    font-size: 14px;
+    color: #8a8d90;
+    margin-right: 10px;
+}
+
+.voucherAmount {
+    font-size: 20px;
+    font-weight: bold;
+    color: #61C15C;
+}
+
+.voucherExpiry {
+    font-size: 14px;
+    color: #8a8d90;
+}
+
+.NoRewards{
+    margin-top: 60%;
+}
+
+.Container{
+    padding: 20px;
+    background: #171A1F;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+
+}

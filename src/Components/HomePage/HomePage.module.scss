@@ -1,0 +1,230 @@
+/* General styles */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+.container {
+  padding: 15px;
+  background: #FFFFFFFF; /* white */
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.menuIcon,
+.icon {
+  font-size: 24px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.imageContainer {
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: 20px;
+}
+
+.imageContainer::-webkit-scrollbar {
+  display: none; 
+}
+
+.greeting,
+.userName {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+}
+
+.SuggestedGamesText {
+  font-size: 20px;
+  /* Emphasis on section titles */
+  font-weight: bold;
+  /* Bold weight for importance */
+  margin-bottom: 20px;
+  /* Spacing for section separation */
+}
+
+/* Scrollable game container adjustments */
+.suggestedGamesContainerWrapper,
+.suggestedGamesContainer {
+  display: flex;
+  /* Flex display for inline positioning */
+  overflow-x: auto;
+  /* Horizontal scrolling */
+  gap: 14px;
+
+  /* Spacing between games */
+  &::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar for cleanliness */
+  }
+
+  scrollbar-width: none;
+  /* Firefox scrollbar hide */
+  -ms-overflow-style: none;
+  /* IE and Edge scrollbar hide */
+}
+
+/* Suggested image styling for engagement */
+.suggestedImage {
+  width: 200px;
+  height: 200px;
+  /* Standard height for consistency */
+  border-radius: 8px;
+  /* Rounded corners for style */
+  object-fit: cover;
+  /* Cover fit for no image distortion */
+  cursor: pointer;
+  /* Cursor indication for interaction */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  /* Smooth transitions */
+  &:hover {
+    transform: scale(1.1);
+    /* Zoom effect on hover */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.75);
+    /* Glow effect for prominence */
+  }
+}
+
+/* Icon overlay for interaction cues */
+.iconOverlay {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.icon1,
+.icon2 {
+  width: 80px;
+  height: 80px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes shine {
+  from {
+    background-position: top right;
+  }
+
+  to {
+    background-position: bottom left;
+  }
+}
+
+
+
+.gameCard {
+  border-radius: 8px;
+  background-color: #02563e;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 310px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.gameHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.gameImageContainer {
+  position: relative; // Container to hold the image and pseudo-element
+  width: 148px; // Width of the image plus the yellow background
+  height: 143px; // Height of the image plus the yellow background
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px; 
+  &::before {
+    content: '';
+    position: absolute;
+    width: 138px; 
+    height: 133px;
+    background-color: #f3d505; 
+    z-index: -1;
+    border-radius: 7px; 
+    top: 5px; 
+    left: 5px;
+  }
+
+  img {
+    background-color: #f3d505; // Yellow color
+
+    position: absolute; // Position image absolutely within the container
+    width: 138px; // Actual image width
+    height: 133px; // Actual image height
+    border-radius: 7px; // Optional, if you want the yellow background to have rounded corners
+    top: 0px;
+    right: 0px;
+    z-index: 1; // Ensure the image is above the pseudo-element
+  }
+}
+
+.IconMainContainer {
+  display: flex;
+  justify-content: left;
+  line-height: 30px;
+}
+
+.prizePool,
+.players,
+.timeRemaining {
+  font-family: Inter;
+  /* Body */
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: 550;
+  color: #FFFFFFFF;
+  /* white */
+}
+
+.GameName {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+  line-height: 30px;
+
+}
+
+.iconsize {
+  height: 20px;
+  border-radius: 10px;
+  padding-right: 5px;
+  margin-top: 3px;
+}
+
+.iconCoinSize {
+  height: 16px;
+  border-radius: 50%;
+  padding-right: 5px;
+  margin-top: 3px;
+}

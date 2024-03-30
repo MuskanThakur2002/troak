@@ -1,0 +1,173 @@
+.container {
+    background: #171A1FFF;
+    // padding: 20px;
+    position: relative; // Establishes a positioning context for absolutely positioned children
+    // padding: 10px; // Add padding inside the container, which also creates space for the button
+    min-height: 100vh;
+}
+
+.voucherCard {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.voucherLabel {
+    font-family: Inter;
+    /* Body */
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #FFFFFFFF;
+    /* white */
+    padding-bottom: 10px;
+}
+
+.voucherCodeBox {
+    background: #DEE1E6FF;
+    /* neutral-300 */
+    border-radius: 6px;
+    /* border-m */
+    box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
+    /* shadow-xs */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+}
+
+.clockIcon {
+    filter: invert(64%) sepia(59%) saturate(455%) hue-rotate(80deg) brightness(96%) contrast(89%);
+    height: 25px;
+    width: 25px;
+}
+
+.checkIcon {
+    // Add a filter to change the color to a green tone
+    filter: invert(64%) sepia(59%) saturate(455%) hue-rotate(80deg) brightness(96%) contrast(89%);
+    // Other styles for the check icon
+}
+
+.voucherCode {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+}
+
+.voucherCodeText {
+    font-family: Inter;
+    /* Body */
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #565D6DFF;
+    /* neutral-600 */
+    padding-left: 7px;
+}
+
+.clipboardIcon {
+    width: 24px;
+    height: 30px;
+}
+
+.ExpiresText {
+    font-family: Inter;
+    /* Body */
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #FFFFFFFF;
+    /* white */
+    padding-left: 8px;
+}
+
+.containerText {
+    margin-top: 40px;
+
+}
+
+.containerTopText {
+    font-family: Inter;
+    /* Body */
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #9095A1FF;
+    /* neutral-500 */
+
+}
+
+.dotIcon {
+    filter: invert(64%) sepia(59%) saturate(455%) hue-rotate(80deg) brightness(96%) contrast(89%);
+    width: 12px;
+    height: 12px;
+
+}
+
+.containerInnerText {
+    font-family: Inter;
+    /* Body */
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #FFFFFFFF;
+    /* white */
+    padding-left: 7px;
+}
+
+.voucherMiddleText {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    padding-top: 10px;
+}
+
+
+.button {
+    position: absolute; // Position the button absolutely to place it at the bottom
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Inter;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #61C15CFF;
+    /* primary-500 */
+    background: #F4FBF4FF;
+    /* primary-100 */
+    opacity: 1;
+    border: none;
+    border-radius: 6px;
+    /* border-m */
+    height: 44px;
+
+}
+
+
+.button:hover {
+    color: #61C15CFF;
+    /* primary-500 */
+    background: #CFECCEFF;
+    /* primary-200 */
+}
+
+.button:hover:active {
+    color: #61C15CFF;
+    background: #ABDEA8FF;
+}
+
+/* Disabled */
+.button:disabled {
+    opacity: 0.4;
+}
+
+.topContainer{
+    padding: 20px;
+}

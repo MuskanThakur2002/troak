@@ -1,0 +1,21 @@
+.container {
+  div {
+    padding-bottom: 8px;
+    width: 100%;
+  }
+}
+
+.label {
+  margin-bottom: 20px;
+}
+
+.otp_field {
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+  }
+}
