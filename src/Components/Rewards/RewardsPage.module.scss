@@ -1,107 +1,190 @@
-// RewardsPage.module.scss
-
 .pageContainer {
-    background: #171A1F;
-    min-height: 100vh;
-    // color: white;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;    
+    padding: 20px;
+    background: #ffffff;
 }
 
-.header {
-    width: 100%;
-    text-align: center;
-
-    .backButton {
-        position: absolute;
-        left: 20px;
-        top: 20px;
-        font-size: 24px;
-        cursor: pointer;
-    }
-
-    h1 {
-        margin: 0;
-        padding: 0 0 10px 0;
-        font-size: 24px;
-    }
-
-    .summary {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        font-size: 18px;
-
-        &>div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-}
-
-.totalValue,
-.rewards {
-    font-weight: bold;
-}
-
-.voucherList {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.maincontainer {
+    background: #F6B801FF;
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: #DEE1E6FF;
+    border-style: dashed;
     margin-top: 20px;
+    padding: 20px;
 }
 
-.voucher {
-    background: #2C2F33;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    padding: 15px;
+.mainHeader {
+    padding: 20px 0px 0px 0px;
+    font-family: 'Epilogue';
+    font-size: 20px;
+    font-weight: 700;
+    color: #323743FF;
+}
+
+.summary {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+    margin-right: 30%;
+    padding-bottom: 10px;
+    color: #323743FF;
 
-    &:last-of-type {
-        margin-bottom: 0;
+    &>div {
+        display: flex;
+        flex-direction: column;
+        align-items: space-between;
     }
-    &.expired {
-        background: #3c3c3c; // Dark gray background for expired rewards
-        .voucherAmount, .voucherExpiry {
-          color: #757575; // Dimmed color for expired reward text
-        }
-      }
-    
 }
 
-.voucherSource {
-    font-size: 14px;
-    color: #8a8d90;
-    margin-right: 10px;
+
+.rewards .totalValue {
+    font-family: 'Inter';
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #323743FF;
+
 }
 
-.voucherAmount {
+.totalValueAmount {
+    font-family: 'Epilogue';
     font-size: 20px;
-    font-weight: bold;
-    color: #61C15C;
+    line-height: 30px;
+    font-weight: 700;
+    color: #323743FF;
 }
 
-.voucherExpiry {
-    font-size: 14px;
-    color: #8a8d90;
+.rewards {
+    right: 20px
 }
 
-.NoRewards{
-    margin-top: 60%;
-}
-
-.Container{
-    padding: 20px;
-    background: #171A1F;
-    color: white;
+.middleContainer {
     display: flex;
-    flex-direction: column;
-    align-items: center;    
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    height: 187px;
+    background: #F6B8015C;
+    border-radius: 6px;
+    font-family: 'Inter';
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 700;
+    color: #323743FF;
+}
+
+.voucherContainer {
+    background: #FEFEFFFF;
+    border-radius: 4px;
+    border-width: 0.5px;
+    border-color: #7678EDFF;
+    border-style: solid;
+    // box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
+    text-align: center;
+    padding: 15px 10px 10px 10px;
+    // height: 193px;
+}
+
+.voucherBrandName {
+    background: #FF9900FF;
+    border-radius: 3px;
+    border: none;
+    padding: 10px 20px;
+    font-family: Inter; /* Body */
+    font-size: 9px; 
+    line-height: 8px; 
+    font-weight: 400; 
+    color: #FFFFFFFF; /* white */
+  
+}
+
+.voucherAmout {
+    margin-top: 50px;
+    margin-bottom: 40px;
+    font-family: 'Epilogue'; /* Heading */
+    font-size: 32px; 
+    line-height: 48px; 
+    font-weight: 700; 
+    color: #171A1FFF; /* neutral-900 */
+}
+
+.button {
+    min-height: 36px; 
+    width: 100%;
+    padding: 0 5px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-family: 'Inter'; 
+    font-size: 10px; 
+    line-height: 18px; 
+    font-weight: 400; 
+    color: #2E2300FF; 
+    background: #F7B801FF; 
+    opacity: 1; 
+    border: none; 
+    border-radius: 6px; /* border-m */
+  }
+  /* Hover */
+  .button:hover {
+    color: #2E2300FF; 
+    background: #C79601FF; 
+  }
+  /* Pressed */
+  .button:hover:active {
+    color: #2E2300FF; 
+    background: #997301FF; 
+  }
+  /* Disabled */
+  .button:disabled {
+    opacity: 0.4; 
+  }
+  
+
+  .gridContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates two columns */
+    padding-top: 10px;
+    gap: 20px;
+    margin-top: 30px;
 
 }
+
+
+.disbutton {
+
+
+    min-height: 36px; 
+    width: 100%;
+    padding: 0 5px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-family: 'Inter'; 
+    font-size: 10px; 
+    line-height: 18px; 
+    font-weight: 400; 
+    color: #2E2300FF; 
+    background: #F7B801FF; 
+    opacity: 0.4; 
+    border: none; 
+    border-radius: 6px; /* border-m */
+  }
+  /* Hover */
+  .disbutton:hover {
+    color: #2E2300FF; 
+    background: #C79601FF; 
+  }
+  /* Pressed */
+  .disbutton:hover:active {
+    color: #2E2300FF; 
+    background: #997301FF; 
+  }
+  /* Disabled */
+  .disbutton:disabled {
+    opacity: 0.4; 
+  }
+  

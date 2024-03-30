@@ -41,7 +41,7 @@
 }
 
 .innerText {
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -62,33 +62,33 @@
   height: 164px;
   padding: 10px;
   /* Equal padding on all sides */
-  font-family: Inter;
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
   color: #424856FF;
   background: #FFFFFF;
   border-radius: 12px;
-  border: 1px solid #9095A1FF;
+  border: 1px solid #F6B801FF;
   box-sizing: border-box;
   /* Ensures padding and border are included in the width */
 }
 
 .textareaContainer textarea:hover {
   background: #FFFFFF;
-  border-color: #6F7787FF;
+  border-color: #F6B801FF;
 }
 
 .textareaContainer textarea:focus {
   background: #FFFFFF;
-  border-color: #9095A1FF;
+  border-color: #F6B801FF;
   box-shadow: 0px 0px 5px #9095a1;
 }
 
 .textareaContainer textarea:disabled {
   color: #171A1FFF;
   background: #FFFFFF;
-  border-color: #9095A1FF;
+  border-color: #F6B801FF;
 }
 
 .buttonContainer {
@@ -106,28 +106,16 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  font-family: Inter;
+  background: #F6B801FF; /* primary-500 */
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
-  color: #FFFFFF;
-  background: #61C15CFF;
+  color: #554000FF; /* primary-800 */
   opacity: 1;
   border: none;
   border-radius: 12px;
   cursor: pointer;
-}
-
-.button:hover {
-  background: #43A33EFF;
-}
-
-.button:active {
-  background: #3A8D35FF;
-}
-
-.button:disabled {
-  opacity: 0.4;
 }
 
 

@@ -1,20 +1,20 @@
 import React from 'react';
 import styles from './VoucherRedemption.module.scss';
-import voucher from '../../images/voucher.png'
+import voucher from '../../images/giftCard.png'
 import back from "../../images/back.svg";
 import copyIcon from "../../images/boxiconsCopy.svg"
 import { useNavigate } from "react-router-dom";
 import discount from "../../images/discount.png"
 import clock from '../../images/phosphor-clock.svg'
 import dotImage from "../../images/boxicons-circle.svg"
-const VoucherRedemption = ({data, handleVoucherBackClick}) => {
+const VoucherRedemption = ({ data, handleVoucherBackClick }) => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
     navigate(-1);
   };
 
-  
+
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(data.rewardCode)
@@ -28,7 +28,7 @@ const VoucherRedemption = ({data, handleVoucherBackClick}) => {
       });
   };
 
-  const handleRedirectClick=()=>{
+  const handleRedirectClick = () => {
     window.location.href = data.rewardDeeplink;
 
   }
@@ -62,8 +62,13 @@ const VoucherRedemption = ({data, handleVoucherBackClick}) => {
       <div className={styles.topContainer}>
 
         <img src={back} alt="Back" className={styles.backButton} onClick={handleVoucherBackClick} />
-        <div className={styles.voucherCard}>
+        <div className={styles.voucherCard} >
+
           <img src={voucher} alt="Amazon Voucher" className={styles.voucherImage} />
+          <div className={styles.voucherCardDetailContainer}>
+            <button className={styles.button}>{data.rewardBrandName}</button>
+          </div>
+
         </div>
         <div className={styles.voucherLabel}>VOUCHER CODE</div>
         <div className={styles.voucherCodeBox}>

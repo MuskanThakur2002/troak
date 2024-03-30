@@ -1,136 +1,356 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-/* Main container styling */
-.mainProfileContainer {
-    background-color: #20232a;
-    color: #61C15C;
-    min-height: 100vh;
+// /* Main container styling */
+// .mainProfileContainer {
+//     background-color: #20232a;
+//     color: #61C15C;
+//     min-height: 100vh;
+//     padding: 20px;
+//     box-sizing: border-box;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// /* Profile card */
+// .profile {
+//     background-color: #282c34;
+//     /* Slightly lighter dark shade for the card */
+//     border-radius: 8px;
+//     width: 100%;
+//     max-width: 400px;
+//     /* Ideal for mobile screens */
+//     padding: 20px;
+//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+//     /* Soft shadow for a floating effect */
+// }
+
+// /* User information section */
+// .rectangle {
+//     background-color: #282c34;
+//     border: 2px solid #61C15C;
+//     ;
+//     /* Updated to vibrant green for emphasis */
+//     border-radius: 8px;
+//     padding: 20px;
+//     text-align: center;
+// }
+
+// .userImage {
+//     width: 80px;
+//     height: 80px;
+//     border-radius: 50%;
+//     border: 3px solid #61C15C;
+//     padding: 10px;
+//     /* Updated to vibrant green border around the image */
+//     margin-bottom: 15px;
+// }
+
+// .userName,
+// .userNumber {
+//     color: #ffffff;
+//     /* White for clarity */
+//     margin: 5px 0;
+//     /* Proper spacing */
+// }
+
+// .editOption {
+//     position: absolute;
+//     top: 20px;
+//     right: 20px;
+//     color: #61C15C;
+//     ;
+//     /* Updated to vibrant green to stand out for edit/save icons */
+//     cursor: pointer;
+// }
+
+// /* Icons and action areas */
+// .column {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     /* Spacing out the icon and text/amount */
+//     padding: 12px;
+//     margin-top: 10px;
+//     background-color: #333940;
+//     /* Slightly different background for separation */
+//     border-radius: 8px;
+//     color: #ffffff;
+//     font-size: 16px;
+// }
+
+// /* Logout button */
+// .button {
+//     background-color: #61C15C;
+//     ;
+//     /* Updated to vibrant green for the button */
+//     color: #20232a;
+//     /* Dark text for contrast */
+//     padding: 10px 20px;
+//     border-radius: 20px;
+//     text-align: center;
+//     margin-top: 20px;
+//     font-weight: bold;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease-in-out;
+// }
+
+// .button:hover {
+//     background-color: #5da558;
+//     /* A darker shade of green on hover for feedback */
+// }
+
+// /* Adjustments for icons to ensure they align and match the theme */
+// .icon,
+// .arrowIcon {
+//     color: #61C15C;
+//     ;
+//     /* Updated to vibrant green for a cohesive look */
+//     margin-right: 8px;
+// }
+
+// /* Active state for the current section indicator */
+// .active {
+//     background-color: #61C15C;
+//     ;
+//     /* Updated to vibrant green background for active state */
+//     color: #20232a;
+//     /* Dark text for contrast */
+//     font-weight: 500;
+// }
+
+// /* For making icons white */
+// .icon {
+//     filter: brightness(0) invert(1);
+//     /* This filter will make icons white */
+// }
+
+// /* Additional space on the right, if needed for layout adjustments */
+// .homeRightSpace {
+//     width: 30px;
+// }
+
+// .amount {
+//     width: 30px;
+//     text-align: center;
+// }
+
+
+
+.profile {
+    background: #f8f8f8;
+}
+
+.rectangle {
+    background: #F6B801FF;
+    /* tertiary1-500 */
     padding: 20px;
-    box-sizing: border-box;
+
+    border-radius: 6px;
+    /* border-m */
+    border-width: 1px;
+    border-color: #BDC1CAFF;
+    /* neutral-400 */
+    border-style: solid;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+
+.userInfo {
+    text-align: center;
+    margin: 40px 20px 10px 20px;
+    position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
-/* Profile card */
-.profile {
-    background-color: #282c34;
-    /* Slightly lighter dark shade for the card */
-    border-radius: 8px;
-    width: 100%;
-    max-width: 400px;
-    /* Ideal for mobile screens */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Soft shadow for a floating effect */
+.userImage {
+    border-radius: 50%;
+    margin-bottom: 10px;
+    background: #f8f8f8;
+    padding: 7px;
+
 }
 
-/* User information section */
-.rectangle {
-    background-color: #282c34;
-    border: 2px solid #61C15C;
-    ;
-    /* Updated to vibrant green for emphasis */
-    border-radius: 8px;
-    padding: 20px;
+.profileImageSize {
+    width: 82px;
+    height: 82px;
+
+}
+
+.userData {
     text-align: center;
 }
 
-.userImage {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 3px solid #61C15C;
-    padding: 10px;
-    /* Updated to vibrant green border around the image */
-    margin-bottom: 15px;
+.userData h2 {
+    margin-bottom: 5px;
 }
 
-.userName,
+.text {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 32px;
+    color: #171A1FFF;
+}
+
+.userName {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 400;
+    color: #171A1FFF;
+    /* neutral-900 */
+
+
+}
+
 .userNumber {
-    color: #ffffff;
-    /* White for clarity */
-    margin: 5px 0;
-    /* Proper spacing */
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #424856FF;
+    font-weight: 400;
+}
+
+.number {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #424856FF;
 }
 
 .editOption {
     position: absolute;
     top: 20px;
     right: 20px;
-    color: #61C15C;
-    ;
-    /* Updated to vibrant green to stand out for edit/save icons */
-    cursor: pointer;
 }
 
-/* Icons and action areas */
-.column {
+.editIcon {
+    font-size: 24px;
+    color: #333;
+}
+
+.home {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    /* Spacing out the icon and text/amount */
-    padding: 12px;
-    margin-top: 10px;
-    background-color: #333940;
-    /* Slightly different background for separation */
-    border-radius: 8px;
-    color: #ffffff;
-    font-size: 16px;
 }
 
-/* Logout button */
+.homeIcon {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    padding-top: 10px;
+}
+
+.icon {
+    font-size: 24px;
+}
+
+
 .button {
-    background-color: #61C15C;
-    ;
-    /* Updated to vibrant green for the button */
-    color: #20232a;
-    /* Dark text for contrast */
-    padding: 10px 20px;
-    border-radius: 20px;
-    text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    position: absolute;
+    padding: 10px;
+    display: flex;
+    right: 15px;
+    left: 15px;
+    bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #020328FF;
+    /* secondary-500 */
+    background: #F3F4F6FF;
+    opacity: 1;
+    border: none;
 }
 
 .button:hover {
-    background-color: #5da558;
-    /* A darker shade of green on hover for feedback */
+    color: #565D6DFF;
+    background: #DEE1E6FF;
 }
 
-/* Adjustments for icons to ensure they align and match the theme */
-.icon,
+.button:hover:active {
+    color: #565D6DFF;
+    background: #CFD2DAFF;
+}
+
+.button:disabled {
+    opacity: 0.4;
+}
+
+
+.middleContainer {
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 20px 20px;
+}
+
+.column {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    opacity: 1;
+    gap: 12px;
+    cursor: pointer;
+    color: #171A1FFF;
+    /* neutral-900 */
+}
+
+.icon {
+    font-size: 20px;
+    color: #565D6DFF;
+}
+
 .arrowIcon {
-    color: #61C15C;
-    ;
-    /* Updated to vibrant green for a cohesive look */
-    margin-right: 8px;
-}
-
-/* Active state for the current section indicator */
-.active {
-    background-color: #61C15C;
-    ;
-    /* Updated to vibrant green background for active state */
-    color: #20232a;
-    /* Dark text for contrast */
+    font-size: 16px;
+    margin-left: auto;
     font-weight: 500;
 }
 
-/* For making icons white */
-.icon {
-    filter: brightness(0) invert(1);
-    /* This filter will make icons white */
+.input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-/* Additional space on the right, if needed for layout adjustments */
-.homeRightSpace {
-    width: 30px;
+.inputWithBorder {
+    border-color: #276024FF;
 }
+
 
 .amount {
-    width: 30px;
-    text-align: center;
+    margin-left: auto;
+    background-color: #de3b40;
+    padding: 1px 10px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    // line-height: 24px; 
+    color: #FFFFFFFF;
+}
+
+.active {
+    background: #FFEAADFF;
+    /* primary-200 */
+    border-radius: 6px;
+    font-weight: 600;
 }

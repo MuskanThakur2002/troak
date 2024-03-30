@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import styles from "./Feedback.module.scss";
 import { AiOutlineClose } from "react-icons/ai";
-import feedbackSubmittedImage from "../../images/submited.svg";
+import feedbackSubmittedImage from "../../images/yellowCorrectIcon.svg";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { submitFeedback } from "../../Utilities/ApiHandler"

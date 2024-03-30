@@ -24,13 +24,13 @@ interface UserData {
   phoneNumber: string;
 }
 
+
 interface CustomWindow extends Window {
   ReactNativeWebView?: {
     postMessage: (message: string) => void;
   };
 }
 const customWindow = window as CustomWindow;
-
 
 function Profile() {
   const { loading, data, error } = useSelector((state: RootState) => state.homePage);
@@ -57,8 +57,8 @@ function Profile() {
 
   const { name, mobileNumber, totalEarning, profileImage } = data?.data ?? {};
   const initialUserData: UserData = {
-    name: name || '', // If name is null or undefined, default to an empty string
-    phoneNumber: mobileNumber || '', // If mobileNumber is null or undefined, default to an empty string
+    name: name || '',
+    phoneNumber: mobileNumber || '',
   };
 
 
@@ -152,7 +152,6 @@ function Profile() {
 
       logout();
     } catch (error) {
-      // Handle any errors that occur during the logout process
       logout();
 
       console.error("Error during logout:", error);
@@ -189,14 +188,14 @@ function Profile() {
             )}
           </div>
           <div className={styles.userInfo}>
-            {profileImage &&
+            <div className={styles.userImage}>
+
               <img
                 src={`data:image/svg+xml;base64,${profileImage}`}
                 alt="Profile"
-                className={styles.userImage}
+                className={styles.profileImageSize}
               />
-
-            }
+            </div>
             <div className={styles.userData}>
               {editMode ? (
                 <>
@@ -229,32 +228,31 @@ function Profile() {
 
         <div className={styles.middleContainer}>
           <div className={`${styles.column} ${activeIcon === "home" ? styles.active : ""}`}
-            onClick={() => { handleIconClick("home"); }}>
+            onClick={() => { handleIconClick("home") }}>
             <img src={HomeImage} className={`${activeIcon === "home" ? styles.greenIcon : styles.icon}`} alt="Home Icon" />
             Home
-            <div className={styles.homeRightSpace}></div>
-
           </div>
 
           <div className={`${styles.column} ${activeIcon === "earnings" ? styles.active : ""}`}
             onClick={() => handleIconClick("earnings")}>
             <img src={EarningImage} className={`${activeIcon === "earnings" ? styles.greenIcon : styles.icon}`} alt="Earnings Icon" />
-            Total Rewards
-            <div className={styles.amount}>{totalEarning ? totalEarning : 0}</div>
+            Total Earnings
+            <div className={styles.amount}>{totalEarning?totalEarning:0}</div>
           </div>
 
           <div className={`${styles.column} ${activeIcon === "feedback" ? styles.active : ""}`}
             onClick={() => handleIconClick("feedback")}>
-            <img src={FeedBackImage} className={`${activeIcon === "feedback" ? styles.greenIcon : styles.icon}`} alt="Feedback Icon" />
+            <img src={FeedBackImage} className={`${activeIcon === "feedback" ? styles.active : ""}`} alt="Feedback Icon" />
             Give Us Feedback
-            <MdArrowForward className={styles.arrowIcon} />
+            <div className={`${styles.arrowIcon}  ${activeIcon === "feedback" ? styles.active : ""}`}>{">"}</div>
+
           </div>
 
           <div className={`${styles.column} ${activeIcon === "rate" ? styles.active : ""}`}
             onClick={() => handleIconClick("rate")}>
-            <img src={RateImage} className={`${activeIcon === "rate" ? styles.greenIcon : styles.icon}`} alt="Ratings Icon" />
+            <img src={RateImage} className={`${activeIcon === "rate" ? styles.active : ""}`} alt="Ratings Icon" />
             Rate Us on Playstore
-            <MdArrowForward className={styles.arrowIcon} />
+            <div className={`${styles.arrowIcon}  ${activeIcon === "rate" ? styles.active : ""}`} >{">"}</div>
           </div>
         </div>
 

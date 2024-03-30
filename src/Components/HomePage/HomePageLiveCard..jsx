@@ -1,12 +1,11 @@
 import styles from './HomePage.module.scss';
-import coin from "../../images/star.jpg"
-import player from "../../images/player.jpg"
+import coin from "../../images/trophy-star.png"
+import player from "../../images/publicIcon.jpg"
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const HomePageLiveCard = ({ game, index, cardBackgroundColor}) => {
-  // const [cardBackgroundColor, setCardBackgroundColor] = useState('');
-
+const HomePageLiveCard = ({ game, page, index, cardBackgroundColor }) => {
   const [hoursDifference, setHoursDifference] = useState(0);
   const [minutesDifference, setMinutesDifference] = useState(0);
   const navigate = useNavigate();
@@ -67,7 +66,6 @@ const HomePageLiveCard = ({ game, index, cardBackgroundColor}) => {
 
   const cardStyle = {
     backgroundColor: cardBackgroundColor,
-    // ... other styles if needed
   };
 
 
@@ -79,29 +77,49 @@ const HomePageLiveCard = ({ game, index, cardBackgroundColor}) => {
             {game.gameName}
           </div>
 
-          <div className={styles.IconMainContainer}>
-            <div>
-              <img src={coin} alt="coin" className={styles.iconCoinSize} />
+          {page == "live" &&
+            <>
+              <div className={styles.IconMainContainer}>
+                <div>
+                  <img src={coin} alt="coin" className={styles.iconCoinSize} />
+                </div>
+                <div className={styles.prizePool}>Prize Pool INR {game.prizeMoney ? game.prizeMoney : 0}</div>
+              </div>
+              <div className={styles.IconMainContainer}>
+                <div>
+                  <img src={player} className={styles.iconsize} alt="players" />
+                </div>
+                <div className={styles.players}>{game.activePlayers} Playing</div>
+              </div>
+              <div className={styles.timeRemaining}>Ends In {hoursDifference}h:{minutesDifference}m</div>
+            </>
+          }
+
+          {page == "upcoming" &&
+            <>
+              <div className={styles.IconMainContainer}>
+                <div>
+                  <img src={coin} alt="coin" className={styles.iconCoinSize} />
+                </div>
+                <div className={styles.prizePool}>Prize Pool INR {game.prizeMoney ? game.prizeMoney : 0}</div>
+              </div>
+              <div className={styles.timeRemaining}>Start In {hoursDifference}h:{minutesDifference}m</div>
+            </>
+          }
+
+
+          {page == "history" &&
+
+            <div className={styles.buttonContainer} >
+
+              <div className={styles.button} >LeaderBoard</div>
             </div>
-            <div className={styles.prizePool}>Prize Pool Rs {game.prizeMoney ? game.prizeMoney : 0}</div>
-          </div>
-          <div className={styles.IconMainContainer}>
-            <div>
-              <img src={player} className={styles.iconsize} alt="players" />
-            </div>
-
-            <div className={styles.prizePool}>{game.activePlayers} playing</div>
-          </div>
-
-          <div className={styles.timeRemaining}>Ends In {hoursDifference}h:{minutesDifference}m</div>
-
+          }
 
         </div>
         <div className={styles.gameImageContainer}>
-
           <img className={styles.gameImage} src={game.assest} alt="Mine Rusher game" />
         </div>
-
       </div>
     </div>
 

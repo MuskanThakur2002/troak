@@ -1,5 +1,6 @@
 .container {
-    background: #171A1FFF;
+    background: #F8F9FAFF; /* neutral-150 */
+    /* neutral-150 */
     // padding: 20px;
     position: relative; // Establishes a positioning context for absolutely positioned children
     // padding: 10px; // Add padding inside the container, which also creates space for the button
@@ -9,10 +10,13 @@
 .voucherCard {
     text-align: center;
     margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
 }
 
+
 .voucherLabel {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     /* Body */
     font-size: 12px;
     line-height: 18px;
@@ -23,13 +27,15 @@
 }
 
 .voucherCodeBox {
-    background: #DEE1E6FF;
+    background: #FFEAADAD;
+    /* tertiary2-200 */
     /* neutral-300 */
     border-radius: 6px;
+    border: none;
     /* border-m */
-    box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
+    // box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
     /* shadow-xs */
-    padding: 10px;
+    padding: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -38,14 +44,14 @@
 }
 
 .clockIcon {
-    filter: invert(64%) sepia(59%) saturate(455%) hue-rotate(80deg) brightness(96%) contrast(89%);
+    filter: invert(35%) sepia(100%) saturate(2500%) hue-rotate(200deg) brightness(100%) contrast(105%);
     height: 25px;
     width: 25px;
 }
 
 .checkIcon {
     // Add a filter to change the color to a green tone
-    filter: invert(64%) sepia(59%) saturate(455%) hue-rotate(80deg) brightness(96%) contrast(89%);
+    filter: invert(35%) sepia(100%) saturate(2500%) hue-rotate(200deg) brightness(100%) contrast(105%);
     // Other styles for the check icon
 }
 
@@ -55,14 +61,20 @@
     justify-content: left;
 
 }
-
+.voucherImage{
+    width: 165px; 
+    height: 148px; 
+    border-radius: 6px 0 0 6px; /* top-left, top-right, bottom-right, bottom-left */
+    background: #F6B801FF; /* tertiary1-500 */
+}
 .voucherCodeText {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     /* Body */
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
     color: #565D6DFF;
+    /* neutral-600 */
     /* neutral-600 */
     padding-left: 7px;
 }
@@ -73,13 +85,12 @@
 }
 
 .ExpiresText {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     /* Body */
     font-size: 12px;
     line-height: 20px;
     font-weight: 400;
-    color: #FFFFFFFF;
-    /* white */
+    color: #323743FF;
     padding-left: 8px;
 }
 
@@ -89,7 +100,7 @@
 }
 
 .containerTopText {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     /* Body */
     font-size: 12px;
     line-height: 20px;
@@ -100,19 +111,19 @@
 }
 
 .dotIcon {
-    filter: invert(64%) sepia(59%) saturate(455%) hue-rotate(80deg) brightness(96%) contrast(89%);
+    filter: invert(35%) sepia(100%) saturate(2500%) hue-rotate(200deg) brightness(100%) contrast(105%);
     width: 12px;
     height: 12px;
-
 }
 
 .containerInnerText {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     /* Body */
     font-size: 12px;
     line-height: 20px;
     font-weight: 400;
-    color: #FFFFFFFF;
+    color: #323743FF;
+    /* neutral-700 */
     /* white */
     padding-left: 7px;
 }
@@ -134,11 +145,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 26px;
     font-weight: 400;
-    color: #61C15CFF;
+    color: #3c89ff;
     /* primary-500 */
     background: #F4FBF4FF;
     /* primary-100 */
@@ -152,14 +163,14 @@
 
 
 .button:hover {
-    color: #61C15CFF;
+    color: #3c89ff;
     /* primary-500 */
     background: #CFECCEFF;
     /* primary-200 */
 }
 
 .button:hover:active {
-    color: #61C15CFF;
+    color: #3c89ff;
     background: #ABDEA8FF;
 }
 
@@ -168,6 +179,15 @@
     opacity: 0.4;
 }
 
-.topContainer{
+.topContainer {
     padding: 20px;
+}
+
+
+.voucherCardDetailContainer{
+    padding: 10px;
+    background: #FFFFFFFF; /* white */
+    border-radius: 6px; /* border-m */ 
+    border-radius: 0 6px 6px 0; /* top-left, top-right, bottom-right, bottom-left */
+ 
 }

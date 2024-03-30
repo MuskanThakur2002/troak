@@ -8,6 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { fetchHomePageDetails } from '../../actions/homePageActions';
 import HomePageLiveCard from "./HomePageLiveCard.";
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 interface Game {
   gameName: string;
@@ -27,10 +31,7 @@ interface CustomWindow extends Window {
 }
 
 const colors = [
-  '#02563e', '#d6781b', '#013220', '#0000ff', '#ff0000', 
-  '#8A2BE2', '#A52A2A', '#DEB887', '#5F9EA0', '#7FFF00',
-  '#FF69B4', '#BDB76B', '#8B008B', '#556B2F', '#FF8C00',
-  '#9932CC', '#E9967A', '#8FBC8F', '#483D8B', '#2F4F4F'
+  '#117B34FF', '#2E2F73FF', '#E5696DFF', ' #B40047FF'
 ];
 
 const customWindow = window as CustomWindow;
@@ -40,6 +41,15 @@ function HomePage() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [value, setValue] = useState(0);
+  const [greeting, setGreeting] = useState<string>("");
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+
 
   const { loading, data, error } = useSelector((state: RootState) => state.homePage);
 
@@ -64,79 +74,75 @@ function HomePage() {
   }, [dispatch]);
 
 
+  useEffect(() => {
+    const now = new Date();
+    const currentHour = now.getHours();
+    if (currentHour >= 0 && currentHour < 12) {
+      setGreeting("Good Morning");
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting("Good Afternoon");
+    } else {
+      setGreeting("Good Evening");
+    }
+  }, []);
 
-  const openProfile = () => {
-    navigate("/profile");
-  };
-
-  const openNotifications = () => {
-    navigate("/notification");
-  };
-  const handleImageClick = (deepLink: string) => {
-    window.location.href = deepLink;
-  };
 
 
   return (
+
     <div className={styles.container}>
       <div className={styles.header}>
-        <div onClick={openProfile}>
-          <FontAwesomeIcon icon={faBars} size="lg" />
+        <div className={styles.menuIconContainer} onClick={() => navigate("/profile")}>
+          <FontAwesomeIcon icon={faBars as IconProp} className={styles.menuIcon} />
         </div>
-        <div onClick={openNotifications}>
-          <FontAwesomeIcon icon={farBell} size="lg" />
+        <div className={styles.iconContainer} onClick={() => navigate("/notification")}>
+          <FontAwesomeIcon icon={farBell as IconProp} className={styles.icon} />
         </div>
       </div>
-      {data && <>
-        <div className={styles.userName}>Hello, {data?.data?.name}!</div>
+      <div className={styles.greeting}>{greeting}</div>
+      <div className={styles.userName}>Hello, {data?.data?.name}!</div>
+      <Box sx={{ borderBottom: 1, borderColor: '#BDC1CAFF', width: '100%' }}>
+        <Tabs value={value} onChange={handleChange} variant="fullWidth" aria-label="full width tabs example" TabIndicatorProps={{ style: { background: 'none' } }}>
+          <Tab label="Live" sx={{
+            fontFamily: 'Actor',
+            fontSize: '16px',
+            fontWeight: '400',
+            color: value === 0 ? '#EFB034FF !important' : '#171A1FFF',
+          }} />
+          <Tab label="Upcoming" sx={{
+            fontFamily: 'Actor',
+            fontSize: ' 16px',
+            fontWeight: '400',
+            color: value === 1 ? '#EFB034FF !important' : '#171A1FFF', // Change color based on selection
+          }} />
 
-        <h1>Live Tournaments</h1>
-
-        {/* <div className={styles.imageContainer}> */}
-          {data?.data?.topTournament.map((game: Game, index: number, array: Game[]) => (
-            <HomePageLiveCard game={game} index={index} cardBackgroundColor={colors[index % colors.length]}
+          <Tab label="History" sx={{
+            fontFamily: 'Inter',
+            fontSize: '16px',
+            fontWeight: '400',
+            color: value === 2 ? '#EFB034FF !important' : '#171A1FFF', // Change color based on selection
+          }} />
+        </Tabs>
+      </Box>
+      <div style={{marginTop:'20px'}}>
+        {value === 0 &&
+          data?.data?.topTournament.map((game: Game, index: number, array: Game[]) => (
+            <HomePageLiveCard page ={"live"} game={game} index={index} cardBackgroundColor={colors[index % colors.length]}
             />
-          ))}
+          ))
+        }
+        {value === 1 && data?.data?.topTournament.map((game: Game, index: number, array: Game[]) => (
+          <HomePageLiveCard  page ={"upcoming"} game={game} index={index} cardBackgroundColor={colors[index % colors.length]}
+          />
+        ))}
 
-        {/* </div> */}
-        {/* {data?.data?.otherTournament && (
-          <>
-            <div className={styles.SuggestedGamesText} style={{ marginTop: "10px" }}>Suggested Games</div>
-            <div className={styles.suggestedGamesContainerWrapper}>
-              <div className={styles.suggestedGamesContainer}>
-                {data.data.otherTournament.slice(0, Math.ceil(data.data.otherTournament.length / 2)).map((game: Game) => (
-                  <div key={game.campaignId} className={styles.gameWrapper}>
-                    <img
-                      src={game.assest}
-                      alt={game.campaignId}
-                      className={styles.suggestedImage}
-                      onClick={() => handleImageClick(game.webUrl)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.SuggestedGamesText} style={{ marginTop: "20px" }}>More Games</div>
-            <div className={styles.suggestedGamesContainerWrapper}>
-              <div className={styles.suggestedGamesContainer}>
-                {data.data.otherTournament.slice(Math.ceil(data.data.otherTournament.length / 2)).map((game: Game) => (
-                  <div key={game.campaignId} className={styles.gameWrapper}>
-                    <img
-                      src={game.assest}
-                      alt={game.campaignId}
-                      className={styles.suggestedImage}
-                      onClick={() => handleImageClick(game.webUrl)}
-                    />
-                  </div>
-                ))} */}
-              {/* </div> */}
-            {/* </div> */}
-          {/* </> */}
-        {/* )} */}
-      </>
-      }
+        {value === 2 && data?.data?.topTournament.map((game: Game, index: number, array: Game[]) => (
+          <HomePageLiveCard page ={"history"} game={game} index={index} cardBackgroundColor={colors[index % colors.length]}
+          />
+        ))}
+      </div>
     </div>
+
   );
 }
 

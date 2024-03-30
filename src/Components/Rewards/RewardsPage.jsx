@@ -5,9 +5,10 @@ import Header from '../Header/Header';
 import RewardsCard from './RewardsCard';
 import { getRewards } from '../../Utilities/ApiHandler';
 import VoucherRedemption from '../VoucherRedemption/VoucherRedemption';
+import { useNavigate } from "react-router-dom";
 
 const RewardsPage = () => {
-  // Dummy data for the sake of the example
+  const navigate = useNavigate();
   const sessionId = localStorage.getItem("sessionId");
   const [rewardsData, setRewardsData] = useState({
     totalAmount: 0,
@@ -54,38 +55,41 @@ const RewardsPage = () => {
     setIsRewardOpen(false)
   };
 
+  const handleBackClick = () => {
+    navigate(-1);
+  };
   return (
     !isRewardOpen ?
       <div className={styles.pageContainer}>
-        <div className={styles.Container}>
+        <img src={back} alt="Back" className={styles.backButton} onClick={handleBackClick} />
 
-          <div className={styles.header}>
-            <Header HeaderName={"Your Rewards"} />
-            <div className={styles.summary}>
-              <div className={styles.totalValue}>
-                Total Value ({rewardsData.rewardsCount})
-                <span style={{ lineHeight: "30px" }}>₹{rewardsData.totalAmount}</span>
-              </div>
-              <div className={styles.rewards}>
-                Rewards
-                <span style={{ lineHeight: "30px" }}>{rewardsData.rewardsCount}</span>
-              </div>
+        <div className={styles.maincontainer}>
+          <div className={styles.mainHeader}>
+            Your Rewards
+          </div>
+          <div className={styles.summary}>
+            <div className={styles.totalValue}>
+              Total Value ({rewardsData.rewardsCount})
+              <span className={styles.totalValueAmount} style={{ lineHeight: "30px" }}>₹{rewardsData.totalAmount}</span>
+            </div>
+            <div className={styles.rewards}>
+              Rewards
+              <span style={{ lineHeight: "30px" }}>{rewardsData.rewardsCount}</span>
             </div>
           </div>
-          {rewardsData.rewardsCount == 0 ?
-            <div className={styles.NoRewards}>
-              No Rewards
-            </div>
-            :
-            <div className={styles.voucherList}>
-              {rewardsData?.rewardList?.map((voucher, index) => {
-                return <RewardsCard voucher={voucher} handleRewardsClick={handleRewardsClick} />
-              })}
-
-            </div>
-          }
         </div>
 
+        {rewardsData.rewardsCount == 0 ?
+
+          <div className={styles.middleContainer}>
+            No Rewards
+          </div> :
+          <div className={styles.gridContainer}>
+
+            {rewardsData?.rewardList?.map((voucher, index) => {
+              return <RewardsCard voucher={voucher} handleRewardsClick={handleRewardsClick} />
+            })}
+          </div>}
       </div>
       :
       <VoucherRedemption data={voucherRedemptionData} handleVoucherBackClick={handleVoucherBackClick} />

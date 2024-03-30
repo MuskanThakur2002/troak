@@ -1,8 +1,14 @@
+/* Import the Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+/* Import Inter and Epilogue fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700&family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Actor:wght@400&family=Epilogue:wght@400;700&family=Inter:wght@400;600;700&display=swap');
+
 body {
-  background-color: #f8f8f8;
+  background-color: #f8f8f8; /* Set the background color for the notification page */
   margin: 0;
-  top: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* Add 'Inter' at the beginning of the font-family list */
+  font-family: 'Inter','Epilogue','Actor', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
