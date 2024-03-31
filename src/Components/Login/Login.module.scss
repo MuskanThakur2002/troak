@@ -1,96 +1,151 @@
 .container {
-  background-color: #f8f8f8;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  // width: 100%;
-  .loginImage {
-    margin-top: 200px;
-    margin-bottom: 15px;
-  }
-  .header {
-    font-family: Open Sans;
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 48px;
-    margin-bottom: 20px;
-    color: #171a1fff;
-  }
-  .button {
-    width: 100%;
-    max-width: 420px;
-    height: 60px;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Open Sans;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 28px;
-    color: #db4437ff;
-    background: #fdf3f2ff;
-    opacity: 1;
-    border: none;
-    border-radius: 12px;
-    gap: 8px;
+	flex: 1;
+	background-color: #f6b801ff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 16px;
+	width: 100vw;
+	height: 100vh;
+	.loginImage {
+		margin-top: 48px;
+		width: 60vw;
+		max-height: 512px;
+		max-width: 512px;
+		object-fit: contain;
+	}
+	.header {
+		font-family: "Epilogue", sans-serif;
+		font-size: 32px;
+		font-weight: 700;
+		line-height: 48px;
+		color: #171a1fff;
+		margin-bottom: 32px;
+	}
+	.headerExtraMargin {
+		margin-top: 32px;
+	}
+	.postLoginGIF {
+		margin-top: 64px;
+		width: 60vw;
+		max-height: 512px;
+		max-width: 512px;
+		object-fit: contain;
+	}
 
-  }
+	.googleButton {
+		margin: 16px 16px 0 16px;
+		width: 100%;
+		max-width: 420px;
+		padding: 0 16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #fdf2f2ff; /* danger-100 */
+		opacity: 1;
+		border: none;
+		border-radius: 12px; /* border-xl */
 
-  .referralContainer {
-    padding: 10px 0;
-    margin-top: 80px;
-    width: 100%;
-    max-width: 420px;
-    background: #ffffffff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 9px #676b72, 0px 0px 2px #676b72;
-    .containers {
-      padding: 5px 10px;
-      .header {
-        // padding: 5px 10px;
-        font-family: Open Sans;
-        font-size: 32px;
-        font-weight: 700;
-        line-height: 48px;
-        margin-bottom: 20px;
-        color: #171a1fff;
-      }
-      .referredBy {
-        // padding: 0 5px;
-        font-family: Open Sans;
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 48px;
-        color: #171a1fff;
-      }
-      .textField {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .div {
-        width: 250px;
-      }
-      .submitButton {
-        width: 77px;
-        height: 57px;
-        padding: 0 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Open Sans;
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 22px;
-        color: #ffffffff;
-        background: #61c15cff;
-        opacity: 1;
-        border: none;
-        border-radius: 6px;
-      }
-    }
-  }
+		img {
+			width: 20px;
+			height: 20px;
+			margin-right: 8px;
+		}
+		p {
+			font-size: 16px;
+			line-height: 20px;
+			font-weight: 400;
+			color: #de3b40ff;
+			font-family: "Inter", sans-serif;
+			text-align: center;
+		}
+	}
+
+	.googleButton:hover {
+		color: #de3b40ff; /* danger-500 */
+		background: #f9dbdcff; /* danger-150 */
+	}
+
+	.googleButton:hover:active {
+		color: #de3b40ff; /* danger-500 */
+		background: #f5c4c6ff; /* danger-200 */
+	}
+	/* Disabled */
+	.googleButton:disabled {
+		opacity: 0.4;
+	}
+
+	.errorMsg {
+		margin: 16px 16px 0 16px;
+		width: 100%;
+		max-width: 420px;
+		padding: 16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #fdf2f2ff; /* danger-100 */
+		opacity: 1;
+		border: none;
+		border-radius: 12px; /* border-xl */
+		font-size: 16px;
+		line-height: 20px;
+		font-weight: 400;
+		color: #de3b40ff;
+		font-family: "Inter", sans-serif;
+		text-align: center;
+	}
+
+	.referralContainer {
+		padding: 10px 0;
+		margin-top: 80px;
+		width: 100%;
+		max-width: 420px;
+		background: #ffffffff;
+		border-radius: 8px;
+		box-shadow: 0px 4px 9px #676b72, 0px 0px 2px #676b72;
+		.containers {
+			padding: 5px 10px;
+			.header {
+				font-family: Open Sans;
+				font-size: 32px;
+				font-weight: 700;
+				line-height: 48px;
+				margin-bottom: 20px;
+				color: #171a1fff;
+			}
+			.referredBy {
+				// padding: 0 5px;
+				font-family: Open Sans;
+				font-size: 18px;
+				font-weight: 600;
+				line-height: 48px;
+				color: #171a1fff;
+			}
+			.textField {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+			.div {
+				width: 250px;
+			}
+			.submitButton {
+				width: 77px;
+				height: 57px;
+				padding: 0 12px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: Open Sans;
+				font-size: 18px;
+				font-weight: 400;
+				line-height: 22px;
+				color: #ffffffff;
+				background: #61c15cff;
+				opacity: 1;
+				border: none;
+				border-radius: 6px;
+			}
+		}
+	}
 }
