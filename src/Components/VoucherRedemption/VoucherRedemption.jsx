@@ -56,7 +56,6 @@ const VoucherRedemption = ({ data, handleVoucherBackClick }) => {
     return `${day}${getOrdinalSuffix(day)} ${month}, ${year}`;
   };
 
-
   return (
     <div className={styles.container}>
       <div className={styles.topContainer}>
@@ -66,7 +65,9 @@ const VoucherRedemption = ({ data, handleVoucherBackClick }) => {
 
           <img src={voucher} alt="Amazon Voucher" className={styles.voucherImage} />
           <div className={styles.voucherCardDetailContainer}>
-            <button className={styles.button}>{data.rewardBrandName}</button>
+            <button className={styles.buttonRewardBrandName}>{data.rewardBrandName}</button>
+            <div className={styles.voucherAmount}>₹{data.rewardAmount}</div>
+
           </div>
 
         </div>

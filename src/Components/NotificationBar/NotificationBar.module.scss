@@ -2,9 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 .notificationBar {
-  padding: 20px 10px;
-  background: #171A1F;
-  color: #ffffff;
+  padding: 30px 10px;
+  background: #F8F9FAFF; /* neutral-150 */
+  border-radius: 0px; 
+  box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
   width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
@@ -24,37 +25,11 @@
 .todayText {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
-  color: #ffffff; /* White color for contrast */
   text-align: center;
   width: 100%;
   margin: 10px 0;
-}
+  color: #171A1FFF; /* neutral-900 */
 
-.header {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.backImage {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  filter: invert(1);
-}
-
-.title {
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #ffffff; /* White color for contrast */
 }
 
 .notificationImageContainer {
@@ -62,19 +37,18 @@
 }
 
 .notificationImage {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #ffffff; /* Border color remains white for visibility */
-  object-fit: cover;
+  width: 85px; 
+  height: 84px; 
+  border-radius: 6px; /* border-m */
 }
 
 .notificationText {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-  color: #dcdcdc; /* Soft white color for text */
-  flex: 1;
+  font-family: 'Inter'; /* Body */
+  font-size: 16px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  color: #171A1FFF; /* neutral-900 */
+
 }
 
 /* Notification card container */
@@ -86,19 +60,19 @@
   margin-bottom: 20px;
   width: calc(100% - 20px); /* Adjust for left and right margins */
   margin: 10px 10px; /* Margin to left and right */
-  background: #333; /* Neutral, dark background */
-  color: #fff; /* White text for contrast */
-  transition: background-color 0.3s, opacity 0.3s;
+  font-family: Inter; /* Body */
+  font-size: 16px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  color: #171A1FFF; /* neutral-900 */
 }
 
 /* Unseen notifications styling */
 .unseenNotification {
-  background: #444; /* Lighter shade for unseen notifications */
-  opacity: 1;
+  background: #F6B80175; /* primary-500 */
 }
 
 /* Seen notifications styling */
 .seenNotification {
-  background: #333; /* Matching the card container background */
-  opacity: 0.6; /* Reduced opacity for a faded look */
+  background: #FFEAAD75;
 }

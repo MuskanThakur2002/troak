@@ -17,7 +17,6 @@ const Header: React.FC<HeaderProps> = ({ HeaderName }) => {
   };
 
   return (
-    HeaderName === "Notifications" ?
       <div className={styles.headerFixedSpace}>
 
         <div className={styles.headerFixed}>
@@ -33,23 +32,6 @@ const Header: React.FC<HeaderProps> = ({ HeaderName }) => {
           </div>
         </div>
       </div>
-
-      : HeaderName === "Your Rewards" ?
-        <div className={styles.headerFixedSpace}>
-
-          <div className={styles.headerFixed}>
-            <div className={styles.RewardsHeader}>
-
-              <img
-                src={back}
-                alt="Back"
-                className={styles.backImage}
-                onClick={handleBackClick}
-              />
-              <span className={styles.title}>{HeaderName}</span>
-            </div>
-          </div>
-        </div> : <></>
 
   );
 };

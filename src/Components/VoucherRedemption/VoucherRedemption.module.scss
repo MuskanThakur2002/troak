@@ -1,5 +1,6 @@
 .container {
-    background: #F8F9FAFF; /* neutral-150 */
+    background: #F8F9FAFF;
+    /* neutral-150 */
     /* neutral-150 */
     // padding: 20px;
     position: relative; // Establishes a positioning context for absolutely positioned children
@@ -28,13 +29,8 @@
 
 .voucherCodeBox {
     background: #FFEAADAD;
-    /* tertiary2-200 */
-    /* neutral-300 */
     border-radius: 6px;
     border: none;
-    /* border-m */
-    // box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
-    /* shadow-xs */
     padding: 12px;
     display: flex;
     align-items: center;
@@ -61,12 +57,16 @@
     justify-content: left;
 
 }
-.voucherImage{
-    width: 165px; 
-    height: 148px; 
-    border-radius: 6px 0 0 6px; /* top-left, top-right, bottom-right, bottom-left */
-    background: #F6B801FF; /* tertiary1-500 */
+
+.voucherImage {
+    width: 165px;
+    height: 148px;
+    border-radius: 6px 0 0 6px;
+    /* top-left, top-right, bottom-right, bottom-left */
+    background: #F6B801FF;
+    /* tertiary1-500 */
 }
+
 .voucherCodeText {
     font-family: 'Inter', sans-serif;
     /* Body */
@@ -132,7 +132,6 @@
     display: flex;
     align-items: center;
     justify-content: left;
-
     padding-top: 10px;
 }
 
@@ -184,10 +183,59 @@
 }
 
 
-.voucherCardDetailContainer{
-    padding: 10px;
-    background: #FFFFFFFF; /* white */
-    border-radius: 6px; /* border-m */ 
-    border-radius: 0 6px 6px 0; /* top-left, top-right, bottom-right, bottom-left */
- 
+.voucherCardDetailContainer {
+    padding: 20px;
+    background: #FFFFFFFF;
+    border-radius: 6px;
+    border-radius: 0 6px 6px 0;
+    border: 2px solid rgba(255, 153, 0, 0.2); /* Adjust the pixel value for border width as needed */
+}
+
+
+/* Button 12 */
+.buttonRewardBrandName {
+    margin-top: 10px;
+    height: 28px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Inter;
+    font-size: 11px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #F2F2F2FF;
+    background: #FF9900FF;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    /* border-s */
+}
+
+/* Hover */
+.buttonRewardBrandName:hover {
+    color: #F2F2F2FF;
+    background: #CE7B00FF;
+}
+
+/* Pressed */
+.buttonRewardBrandName:hover:active {
+    color: #F2F2F2FF;
+    background: #9F5F00FF;
+}
+
+/* Disabled */
+.buttonRewardBrandName:disabled {
+    opacity: 0.4;
+}
+
+
+.voucherAmount{
+    margin-top: 20px;
+    font-family: 'Epilogue'; /* Heading */
+    font-size: 32px; 
+    line-height: 48px; 
+    font-weight: 700; 
+    color: #171A1FFF; /* neutral-900 */
+  
 }
