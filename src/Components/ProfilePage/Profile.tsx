@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { fetchHomePageDetails } from '../../actions/homePageActions';
 import { useNavigate } from "react-router-dom";
+import { Spin } from 'antd';
 
 interface UserData {
   name: string;
@@ -178,86 +179,88 @@ function Profile() {
 
   return (
     <div className={styles.mainProfileContainer}>
-      <div className={styles.profile}>
-        <div className={styles.rectangle}>
-          <div className={styles.editOption} onClick={handleEditClick}>
-            {editMode ? (
-              <FontAwesomeIcon icon={faSave as IconProp} className={styles.editIcon} onClick={saveUserData} />
-            ) : (
-              <RiEdit2Line className={styles.editIcon} />
-            )}
-          </div>
-          <div className={styles.userInfo}>
-            <div className={styles.userImage}>
-
-              <img
-                src={`data:image/svg+xml;base64,${profileImage}`}
-                alt="Profile"
-                className={styles.profileImageSize}
-              />
-            </div>
-            <div className={styles.userData}>
+      {loading ? <div className={styles.loading}><Spin size="large" /></div> :
+        <div className={styles.profile}>
+          <div className={styles.rectangle}>
+            <div className={styles.editOption} onClick={handleEditClick}>
               {editMode ? (
-                <>
-                  <input
-                    type="text"
-                    id="name"
-                    value={userData.name}
-                    onChange={handleNameChange}
-                    className={`${styles.input} ${styles.inputWithBorder}`}
-                    placeholder="Enter your name"
-                  />
-                  <input
-                    type="text"
-                    id="phoneNumber"
-                    value={userData.phoneNumber}
-                    onChange={handlePhoneNumberChange}
-                    className={`${styles.input} ${styles.inputWithBorder}`}
-                    placeholder="Enter your phone number"
-                  />
-                </>
+                <FontAwesomeIcon icon={faSave as IconProp} className={styles.editIcon} onClick={saveUserData} />
               ) : (
-                <>
-                  <div className={styles.userName}>{userData.name}</div>
-                  {formattedPhoneNumber && <div className={styles.userNumber}>+91 {formattedPhoneNumber}</div>}
-                </>
+                <RiEdit2Line className={styles.editIcon} />
               )}
             </div>
+            <div className={styles.userInfo}>
+              <div className={styles.userImage}>
+
+                <img
+                  src={`data:image/svg+xml;base64,${profileImage}`}
+                  alt="Profile"
+                  className={styles.profileImageSize}
+                />
+              </div>
+              <div className={styles.userData}>
+                {editMode ? (
+                  <>
+                    <input
+                      type="text"
+                      id="name"
+                      value={userData.name}
+                      onChange={handleNameChange}
+                      className={`${styles.input} ${styles.inputWithBorder}`}
+                      placeholder="Enter your name"
+                    />
+                    <input
+                      type="text"
+                      id="phoneNumber"
+                      value={userData.phoneNumber}
+                      onChange={handlePhoneNumberChange}
+                      className={`${styles.input} ${styles.inputWithBorder}`}
+                      placeholder="Enter your phone number"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div className={styles.userName}>{userData.name}</div>
+                    {formattedPhoneNumber && <div className={styles.userNumber}>+91 {formattedPhoneNumber}</div>}
+                  </>
+                )}
+              </div>
+            </div>
           </div>
+
+          <div className={styles.middleContainer}>
+            <div className={`${styles.column} ${activeIcon === "home" ? styles.active : ""}`}
+              onClick={() => { handleIconClick("home") }}>
+              <img src={HomeImage} className={`${activeIcon === "home" ? styles.greenIcon : styles.icon}`} alt="Home Icon" />
+              Home
+            </div>
+
+            <div className={`${styles.column} ${activeIcon === "earnings" ? styles.active : ""}`}
+              onClick={() => handleIconClick("earnings")}>
+              <img src={EarningImage} className={`${activeIcon === "earnings" ? styles.greenIcon : styles.icon}`} alt="Earnings Icon" />
+              Total Rewards
+              <div className={styles.amount}>{totalEarning ? totalEarning : 0}</div>
+            </div>
+
+            <div className={`${styles.column} ${activeIcon === "feedback" ? styles.active : ""}`}
+              onClick={() => handleIconClick("feedback")}>
+              <img src={FeedBackImage} className={`${activeIcon === "feedback" ? styles.active : ""}`} alt="Feedback Icon" />
+              Give Us Feedback
+              <div className={`${styles.arrowIcon}  ${activeIcon === "feedback" ? styles.active : ""}`}>{">"}</div>
+
+            </div>
+
+            <div className={`${styles.column} ${activeIcon === "rate" ? styles.active : ""}`}
+              onClick={() => handleIconClick("rate")}>
+              <img src={RateImage} className={`${activeIcon === "rate" ? styles.active : ""}`} alt="Ratings Icon" />
+              Rate Us on Playstore
+              <div className={`${styles.arrowIcon}  ${activeIcon === "rate" ? styles.active : ""}`} >{">"}</div>
+            </div>
+          </div>
+
+          <div className={styles.button} onClick={logoutApiCall}>Log out</div>
         </div>
-
-        <div className={styles.middleContainer}>
-          <div className={`${styles.column} ${activeIcon === "home" ? styles.active : ""}`}
-            onClick={() => { handleIconClick("home") }}>
-            <img src={HomeImage} className={`${activeIcon === "home" ? styles.greenIcon : styles.icon}`} alt="Home Icon" />
-            Home
-          </div>
-
-          <div className={`${styles.column} ${activeIcon === "earnings" ? styles.active : ""}`}
-            onClick={() => handleIconClick("earnings")}>
-            <img src={EarningImage} className={`${activeIcon === "earnings" ? styles.greenIcon : styles.icon}`} alt="Earnings Icon" />
-            Total Earnings
-            <div className={styles.amount}>{totalEarning?totalEarning:0}</div>
-          </div>
-
-          <div className={`${styles.column} ${activeIcon === "feedback" ? styles.active : ""}`}
-            onClick={() => handleIconClick("feedback")}>
-            <img src={FeedBackImage} className={`${activeIcon === "feedback" ? styles.active : ""}`} alt="Feedback Icon" />
-            Give Us Feedback
-            <div className={`${styles.arrowIcon}  ${activeIcon === "feedback" ? styles.active : ""}`}>{">"}</div>
-
-          </div>
-
-          <div className={`${styles.column} ${activeIcon === "rate" ? styles.active : ""}`}
-            onClick={() => handleIconClick("rate")}>
-            <img src={RateImage} className={`${activeIcon === "rate" ? styles.active : ""}`} alt="Ratings Icon" />
-            Rate Us on Playstore
-            <div className={`${styles.arrowIcon}  ${activeIcon === "rate" ? styles.active : ""}`} >{">"}</div>
-          </div>
-        </div>
-
-        <div className={styles.button} onClick={logoutApiCall}>Log out</div>
-      </div>
+      }
 
       <Feedback isOpen={showPopup} onClose={handleClose} />
 

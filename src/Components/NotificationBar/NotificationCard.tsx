@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./NotificationBar.module.scss";
 import { updateNotification } from "../../Utilities/ApiHandler";
 import { useNavigate } from "react-router-dom";
-
+import NotificatioImg from "../../images/notificationIcon.jpg";
 interface Notification {
   body: string;
   title: string;
@@ -46,9 +46,7 @@ const NotificationCard: React.FC<NotificationCardProps> = ({ notification }) => 
         {notification.imageUrl && <div className={styles.notificationImageContainer}>
           <img src={notification.imageUrl} alt="Notification Image" className={styles.notificationImage} />
         </div>}
-        <div className={styles.notificationText}>
-          {notification.body}
-        </div>
+        <div className={styles.notificationText}>{notification.body}</div>
       </div>
     </>
   );

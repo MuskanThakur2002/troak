@@ -1,10 +1,6 @@
 .container {
     background: #F8F9FAFF;
-    /* neutral-150 */
-    /* neutral-150 */
-    // padding: 20px;
-    position: relative; // Establishes a positioning context for absolutely positioned children
-    // padding: 10px; // Add padding inside the container, which also creates space for the button
+    position: relative;
     min-height: 100vh;
 }
 
@@ -40,15 +36,13 @@
 }
 
 .clockIcon {
-    filter: invert(35%) sepia(100%) saturate(2500%) hue-rotate(200deg) brightness(100%) contrast(105%);
+    filter: brightness(50%) contrast(200%) sepia(10%);
     height: 25px;
     width: 25px;
 }
 
 .checkIcon {
-    // Add a filter to change the color to a green tone
-    filter: invert(35%) sepia(100%) saturate(2500%) hue-rotate(200deg) brightness(100%) contrast(105%);
-    // Other styles for the check icon
+    filter: brightness(50%) contrast(200%) sepia(10%);
 }
 
 .voucherCode {
@@ -111,7 +105,7 @@
 }
 
 .dotIcon {
-    filter: invert(35%) sepia(100%) saturate(2500%) hue-rotate(200deg) brightness(100%) contrast(105%);
+    filter: brightness(50%) contrast(200%) sepia(10%);
     width: 12px;
     height: 12px;
 }
@@ -182,13 +176,12 @@
     padding: 20px;
 }
 
-
 .voucherCardDetailContainer {
     padding: 20px;
     background: #FFFFFFFF;
     border-radius: 6px;
     border-radius: 0 6px 6px 0;
-    border: 2px solid rgba(255, 153, 0, 0.2); /* Adjust the pixel value for border width as needed */
+    border: 2px solid rgba(255, 153, 0, 0.2);
 }
 
 
@@ -209,7 +202,6 @@
     opacity: 1;
     border: none;
     border-radius: 4px;
-    /* border-s */
 }
 
 /* Hover */
@@ -230,12 +222,19 @@
 }
 
 
-.voucherAmount{
+.voucherAmount {
     margin-top: 20px;
-    font-family: 'Epilogue'; /* Heading */
-    font-size: 32px; 
-    line-height: 48px; 
-    font-weight: 700; 
-    color: #171A1FFF; /* neutral-900 */
-  
+    font-family: 'Epilogue';
+    /* Heading */
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 700;
+    color: #171A1FFF;
+    /* neutral-900 */
+}
+
+.backButton {
+    position: fixed;
+    top: 10px;
+    left: 10px;
 }

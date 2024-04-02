@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styles from "./HomePage.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell as farBell, faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBell as farBell, faBars } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { fetchHomePageDetails } from '../../actions/homePageActions';
-import HomePageLiveCard from "./HomePageLiveCard.";
+import HomePageLiveCard from "./HomePageLiveCard";
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import SwipeableViews from 'react-swipeable-views';
+// Make sure you have imported the HomePageLiveCard correctly
+import { Spin } from 'antd';
 
 interface Game {
   gameName: string;
@@ -24,55 +26,44 @@ interface Game {
   remainingRetries: number;
   assest: string;
 }
+
 interface CustomWindow extends Window {
   ReactNativeWebView?: {
     postMessage: (message: string) => void;
   };
 }
 
-const colors = [
-  '#117B34FF', '#2E2F73FF', '#E5696DFF', ' #B40047FF'
-];
-
 const customWindow = window as CustomWindow;
 
 function HomePage() {
-
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(() => {
+    const storedValue = localStorage.getItem("tabValue");
+    return storedValue ? parseInt(storedValue, 10) : 0;
+  });
   const [greeting, setGreeting] = useState<string>("");
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-
-
 
   const { loading, data, error } = useSelector((state: RootState) => state.homePage);
 
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+    localStorage.setItem("tabValue", newValue.toString());
+  };
 
-  const logout = () => {
-    if (customWindow.ReactNativeWebView) {
-      customWindow.ReactNativeWebView.postMessage(JSON.stringify({ action: "requestGoogleSignIn" }));
-    }
-
-    localStorage.clear();
-    sessionStorage.clear();
-    navigate('/login');
+  const handleChangeIndex = (index: number) => {
+    setValue(index);
+    localStorage.setItem("tabValue", index.toString());
   };
 
   useEffect(() => {
     const sessionId = localStorage.getItem("sessionId");
-    if (sessionId !== null && sessionId !== undefined) {
+    if (sessionId) {
       dispatch(fetchHomePageDetails(sessionId));
     } else {
       logout()
     }
   }, [dispatch]);
-
 
   useEffect(() => {
     const now = new Date();
@@ -86,11 +77,18 @@ function HomePage() {
     }
   }, []);
 
-
+  const logout = () => {
+    if (customWindow.ReactNativeWebView) {
+      customWindow.ReactNativeWebView.postMessage(JSON.stringify({ action: "requestGoogleSignIn" }));
+    }
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate('/login');
+  };
 
   return (
-
     <div className={styles.container}>
+
       <div className={styles.header}>
         <div className={styles.menuIconContainer} onClick={() => navigate("/profile")}>
           <FontAwesomeIcon icon={faBars as IconProp} className={styles.menuIcon} />
@@ -99,51 +97,50 @@ function HomePage() {
           <FontAwesomeIcon icon={farBell as IconProp} className={styles.icon} />
         </div>
       </div>
+      {loading && <div className={styles.loading}><Spin size="large" /></div>}
+
+
       <div className={styles.greeting}>{greeting}</div>
       <div className={styles.userName}>Hello, {data?.data?.name}!</div>
-      <Box sx={{ borderBottom: 1, borderColor: '#BDC1CAFF', width: '100%' }}>
-        <Tabs value={value} onChange={handleChange} variant="fullWidth" aria-label="full width tabs example" TabIndicatorProps={{ style: { background: 'none' } }}>
-          <Tab label="Live" sx={{
-            fontFamily: 'Actor',
-            fontSize: '16px',
-            fontWeight: '400',
-            color: value === 0 ? '#EFB034FF !important' : '#171A1FFF',
-          }} />
-          <Tab label="Upcoming" sx={{
-            fontFamily: 'Actor',
-            fontSize: ' 16px',
-            fontWeight: '400',
-            color: value === 1 ? '#EFB034FF !important' : '#171A1FFF', // Change color based on selection
-          }} />
-
-          <Tab label="History" sx={{
-            fontFamily: 'Inter',
-            fontSize: '16px',
-            fontWeight: '400',
-            color: value === 2 ? '#EFB034FF !important' : '#171A1FFF', // Change color based on selection
-          }} />
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', margin: '0px 15px' }}>
+        <Tabs value={value} onChange={handleChange} variant="fullWidth" aria-label="full width tabs example">
+          <Tab label="Live" />
+          <Tab label="Upcoming" />
+          <Tab label="History" />
         </Tabs>
       </Box>
-      <div style={{marginTop:'20px'}}>
-        {value === 0 &&
-          data?.data?.topTournament.map((game: Game, index: number, array: Game[]) => (
-            <HomePageLiveCard page ={"live"} game={game} index={index} cardBackgroundColor={colors[index % colors.length]}
-            />
-          ))
-        }
-        {value === 1 && data?.data?.topTournament.map((game: Game, index: number, array: Game[]) => (
-          <HomePageLiveCard  page ={"upcoming"} game={game} index={index} cardBackgroundColor={colors[index % colors.length]}
-          />
-        ))}
-
-        {value === 2 && data?.data?.topTournament.map((game: Game, index: number, array: Game[]) => (
-          <HomePageLiveCard page ={"history"} game={game} index={index} cardBackgroundColor={colors[index % colors.length]}
-          />
-        ))}
-      </div>
+      <SwipeableViews
+        axis="x"
+        index={value}
+        onChangeIndex={handleChangeIndex}
+        style={{
+          padding: "20px 15px",
+          minHeight: `calc(100vh - 250px)`,
+          overflow: data && data.data ? 'auto' : 'hidden' // Conditionally setting overflow
+        }}
+      >
+        <div>
+          {value === 0 && data?.data?.tournament?.map((game: Game, index: number) => (
+            <HomePageLiveCard key={index} page="live" game={game} index={index} />
+          ))}
+        </div>
+        <div>
+          {value === 1 && data?.data?.upcoming?.map((game: Game, index: number) => (
+            <HomePageLiveCard key={index} page="upcoming" game={game} index={index} />
+          ))}
+        </div>
+        <div>
+          {value === 2 && data?.data?.history?.map((game: Game, index: number) => (
+            <HomePageLiveCard key={index} page="history" game={game} index={index} />
+          ))}
+        </div>
+      </SwipeableViews>
     </div>
 
   );
 }
 
 export default HomePage;
+
+
+

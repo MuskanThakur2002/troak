@@ -117,10 +117,16 @@ export const updateUserDetails = async (sessionId: string, mobileNumber: string,
   }
 };
 
-export const getLeaderBoardDetails = async (sessionId: string, campaignId: string) => {
+export const getLeaderBoardDetails = async (sessionId: string, campaignId: string, page: string) => {
   try {
+
+    let leaderUrl = `${BASE_URL}/campaign/${campaignId}/leaderBoard?count=50`
+
+    if(page=='history'){
+      leaderUrl=`${BASE_URL}/campaign/${campaignId}/leaderBoard?count=50&type=history`
+    }
     const response = await axiosHandler({
-      url: `${BASE_URL}/campaign/${campaignId}/leaderBoard`,
+      url: leaderUrl,
       method: METHODS.GET,
       headers: {
         'Session-Id': sessionId,
@@ -186,11 +192,11 @@ export const fetchCampaignInfomation = async (sessionId: string, campaignId: str
   }
 };
 
-export const postGameScore = async (sessionId: string, gameTrackerId: string, gameScore: number, retryCount: number) => {
+export const postGameScore = async (sessionId: string, campaignId: string, gameScore: number, retryCount: number) => {
   try {
     const payload = {
       gameScore: gameScore,
-      gameTrackerId: gameTrackerId,
+      campaignId: campaignId,
       retryCount: retryCount
     };
 
@@ -209,7 +215,7 @@ export const postGameScore = async (sessionId: string, gameTrackerId: string, ga
   }
 };
 
-export const getRewards= async (sessionId: string) => {
+export const getRewards = async (sessionId: string) => {
   try {
     const response = await axiosHandler({
       url: `${BASE_URL}/reward`,

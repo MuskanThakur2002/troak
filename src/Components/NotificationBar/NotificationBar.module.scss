@@ -3,7 +3,7 @@
 
 .notificationBar {
   padding: 30px 10px;
-  background: #F8F9FAFF; /* neutral-150 */
+  background: #F3F4F6FF; /* neutral-200 */
   border-radius: 0px; 
   box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f; /* shadow-xs */
   width: 100%;
@@ -42,37 +42,34 @@
   border-radius: 6px; /* border-m */
 }
 
-.notificationText {
-  font-family: 'Inter'; /* Body */
-  font-size: 16px; 
-  line-height: 22px; 
-  font-weight: 400; 
-  color: #171A1FFF; /* neutral-900 */
-
-}
-
 /* Notification card container */
 .notificationCardContainer {
   display: flex;
   align-items: center;
   border-radius: 8px;
   padding: 12px;
-  margin-bottom: 20px;
+  background: #FFFFFFFF; /* white */
+  border-radius: 11.55555555555556px; 
+	box-shadow: 0px 0px 1px rgba(23, 26, 31, 0.2),
+		0px 0px 2px rgba(23, 26, 31, 0.2);
   width: calc(100% - 20px); /* Adjust for left and right margins */
-  margin: 10px 10px; /* Margin to left and right */
-  font-family: Inter; /* Body */
-  font-size: 16px; 
-  line-height: 22px; 
-  font-weight: 400; 
-  color: #171A1FFF; /* neutral-900 */
+  margin: 5px 5px; /* Margin to left and right */
 }
 
 /* Unseen notifications styling */
 .unseenNotification {
-  background: #F6B80175; /* primary-500 */
+  font-family: 'Inter'; /* Body */
+  font-size: 16px; 
+  line-height: 22px; 
+  font-weight: 500; 
+  color: #171A1FFF; /* neutral-900 */
 }
 
-/* Seen notifications styling */
+// /* Seen notifications styling */
 .seenNotification {
-  background: #FFEAAD75;
+  font-family: 'Inter'; /* Body */
+  font-size: 16px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  color: #9095A1FF; /* neutral-500 */
 }

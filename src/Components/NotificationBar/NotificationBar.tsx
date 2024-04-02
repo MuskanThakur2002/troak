@@ -5,6 +5,7 @@ import NotificationCard from "./NotificationCard";
 import { useNavigate } from "react-router-dom";
 import { getNotification } from "../../Utilities/ApiHandler";
 import Header from "../Header/Header";
+import { Spin } from 'antd';
 
 interface Notification {
   body: string;
@@ -80,7 +81,7 @@ const NotificationBar: React.FC = () => {
   const groupedNotifications: { [date: string]: Notification[] } = {};
 
   allNotifications &&
-  allNotifications.forEach((notification) => {
+    allNotifications.forEach((notification) => {
       const formattedDate = formatDate(notification.notificationTime);
       if (!groupedNotifications[formattedDate]) {
         groupedNotifications[formattedDate] = [];
@@ -93,7 +94,7 @@ const NotificationBar: React.FC = () => {
 
       <Header HeaderName={"Notifications"} />
       {loading ? (
-        <div className={styles.loading}>Loading...</div>
+        <div className={styles.loading}><Spin size="large" /></div>
       ) : (
         Object.entries(groupedNotifications).map(([date, notifications]) => (
           <>

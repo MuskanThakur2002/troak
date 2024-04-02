@@ -4,7 +4,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 16px;
+    overflow: hidden;
 	width: 100vw;
 	height: 100vh;
 	.loginImage {
@@ -35,7 +35,7 @@
 
 	.googleButton {
 		margin: 16px 16px 0 16px;
-		width: 100%;
+		// width: 100%;
 		max-width: 420px;
 		padding: 0 16px;
 		display: flex;
@@ -57,7 +57,7 @@
 			font-weight: 400;
 			color: #de3b40ff;
 			font-family: "Inter", sans-serif;
-			text-align: center;
+			// text-align: center;
 		}
 	}
 
@@ -77,7 +77,6 @@
 
 	.errorMsg {
 		margin: 16px 16px 0 16px;
-		width: 100%;
 		max-width: 420px;
 		padding: 16px;
 		display: flex;

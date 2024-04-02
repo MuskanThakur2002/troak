@@ -22,7 +22,7 @@ const customWindow = window as CustomWindow;
 const Feedback: React.FC<FeedbackProps> = ({ isOpen, onClose }) => {
     const [feedback, setFeedback] = useState<string>("");
     const [submitData, setSubmitData] = useState<boolean>(false);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
 
     useEffect(() => {

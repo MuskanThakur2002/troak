@@ -6,6 +6,8 @@ import RewardsCard from './RewardsCard';
 import { getRewards } from '../../Utilities/ApiHandler';
 import VoucherRedemption from '../VoucherRedemption/VoucherRedemption';
 import { useNavigate } from "react-router-dom";
+import { Spin } from 'antd';
+
 
 const RewardsPage = () => {
   const navigate = useNavigate();
@@ -15,12 +17,14 @@ const RewardsPage = () => {
     rewardsCount: 0,
     rewardList: []
   });
+  const [loading, setLoading] = useState(false);
 
   const [isRewardOpen, setIsRewardOpen] = useState(false);
 
   const [voucherRedemptionData, setVoucherRedemptionData] = useState({});
 
   useEffect(() => {
+    setLoading(true)
     const fetchNotifications = async () => {
       try {
         if (!sessionId) {
@@ -36,7 +40,10 @@ const RewardsPage = () => {
             rewardList: response.data.data.rewardList,
           });
         }
+        setLoading(false)
       } catch (error) {
+        setLoading(false)
+
         console.error("Error fetching notifications:", error);
       }
     };
@@ -60,37 +67,40 @@ const RewardsPage = () => {
   };
   return (
     !isRewardOpen ?
-      <div className={styles.pageContainer}>
-        <img src={back} alt="Back" className={styles.backButton} onClick={handleBackClick} />
-
-        <div className={styles.maincontainer}>
-          <div className={styles.mainHeader}>
-            Your Rewards
-          </div>
-          <div className={styles.summary}>
-            <div className={styles.totalValue}>
-              Total Value ({rewardsData.rewardsCount})
-              <span className={styles.totalValueAmount} style={{ lineHeight: "30px" }}>₹{rewardsData.totalAmount}</span>
+      <>
+        {loading ? <div className={styles.loading}><Spin size="large" /></div> :
+          <div className={styles.pageContainer}>
+            <img src={back} alt="Back" className={styles.backImage} onClick={handleBackClick} />
+            <div className={styles.maincontainer}>
+              <div className={styles.mainHeader}>
+                Your Rewards
+              </div>
+              <div className={styles.summary}>
+                <div className={styles.totalValue}>
+                  Total Value ({rewardsData.rewardsCount})
+                  <span className={styles.totalValueAmount} style={{ lineHeight: "30px" }}>₹{rewardsData.totalAmount}</span>
+                </div>
+                <div className={styles.rewards}>
+                  Rewards
+                  <span style={{ lineHeight: "30px" }}>{rewardsData.rewardsCount}</span>
+                </div>
+              </div>
             </div>
-            <div className={styles.rewards}>
-              Rewards
-              <span style={{ lineHeight: "30px" }}>{rewardsData.rewardsCount}</span>
-            </div>
+
+            {rewardsData.rewardsCount == 0 ?
+
+              <div className={styles.middleContainer}>
+                No Rewards
+              </div> :
+              <div className={styles.gridContainer}>
+
+                {rewardsData?.rewardList?.map((voucher, index) => {
+                  return <RewardsCard voucher={voucher} handleRewardsClick={handleRewardsClick} />
+                })}
+              </div>}
           </div>
-        </div>
-
-        {rewardsData.rewardsCount == 0 ?
-
-          <div className={styles.middleContainer}>
-            No Rewards
-          </div> :
-          <div className={styles.gridContainer}>
-
-            {rewardsData?.rewardList?.map((voucher, index) => {
-              return <RewardsCard voucher={voucher} handleRewardsClick={handleRewardsClick} />
-            })}
-          </div>}
-      </div>
+        }
+      </>
       :
       <VoucherRedemption data={voucherRedemptionData} handleVoucherBackClick={handleVoucherBackClick} />
   );

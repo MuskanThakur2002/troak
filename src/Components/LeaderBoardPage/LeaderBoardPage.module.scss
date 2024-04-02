@@ -20,16 +20,19 @@
 	margin: 16px 16px;
 	padding: 16px 0;
 	align-items: center;
-	background: #f3f4f6ff; /* neutral-200 */
-	border-radius: 12px; /* border-xl */
+	background: #f3f4f6ff;
+	/* neutral-200 */
+	border-radius: 12px;
+	/* border-xl */
 	box-shadow: 0px 0px 1px rgba(23, 26, 31, 0.2),
 		0px 0px 2px rgba(23, 26, 31, 0.2);
 }
 
 .image {
-	width: 35px;
-	height: 35px;
-	border-radius: 100%;
+	width: 44px;
+	height: 44px;
+	border-radius: 6px;
+	/* border-m */
 	// flex-basis: 23%;
 }
 
@@ -39,14 +42,14 @@
 	font-size: 20px;
 	font-weight: 700;
 	color: #171a1fff;
-	margin: 0 16px;
+	margin: 0 20px;
 	padding-top: 8px;
 }
 
 .name {
 	flex: 1;
 	text-align: left;
-	padding-left: 9px;
+	padding-left: 15px;
 	font-family: "Inter", sans-serif;
 	font-size: 16px;
 	font-weight: 500;
@@ -66,7 +69,7 @@
 }
 
 .topContainer {
-	background: #117b34ff;
+	// background: #117b34ff;
 	border-radius: 0px;
 	box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
 	padding-bottom: 20px;
@@ -75,43 +78,42 @@
 
 .innerContainer {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	padding: 20px 20px 20px 20px;
 }
 
 .backImage {
-	width: 30px;
-	height: 30px;
+	filter: brightness(100) saturate(0);
+	position:fixed;
+	top:10px;
+	left: 10px;
+
 }
 
 .Livegame {
-	margin-right: 30px;
-	width: 157px;
-	height: 157px;
-	background: #6e4a01ff;
+	margin-top: 30px;
+	width: 149px;
+	height: 137px;
+	// background: #6e4a01ff;
 	border-radius: 6px;
-	box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
+	// box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
 }
 
-.biggerImageContainer {
-	align-items: center;
-}
 
 .topUsers {
 	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 100px;
-	height: 40px;
-	background-color: blue;
 }
 
 .colImg {
-	position: absolute;
-	border-radius: 100%;
-	width: 40px;
-	height: 40px;
+	width: 98px;
+	height: 44px;
+	border-radius: 4px;
+	/* border-s */
+	box-shadow: 0px 0px 1px rgba(23, 26, 31, 0.2),
+		0px 0px 2px rgba(23, 26, 31, 0.2);
 }
 
 .biggerOverLapContainer {
@@ -129,10 +131,13 @@
 }
 
 .outerSmallContainer {
-	align-items: center; /* This will vertically center your items if you're using flex display */
+	align-items: center;
+	/* This will vertically center your items if you're using flex display */
 	justify-content: center;
-	display: flex; /* Added to enable flexbox properties */
-	flex-direction: column; /* Stack children vertically */
+	display: flex;
+	/* Added to enable flexbox properties */
+	flex-direction: column;
+	/* Stack children vertically */
 	padding: 16px;
 	margin-top: 16px;
 }
@@ -140,26 +145,40 @@
 /* Container for all image-text pairs */
 .SmallImageContainer {
 	display: flex;
-	flex-wrap: wrap; /* Allow wrapping to the next line */
-	justify-content: center; /* Center the items horizontally */
-	gap: 20px; /* Adjust the gap between pairs as needed */
+	flex-wrap: wrap;
+	/* Allow wrapping to the next line */
+	justify-content: center;
+	/* Center the items horizontally */
+	gap: 20px;
+	/* Adjust the gap between pairs as needed */
 }
+
 
 /* Individual image-text pairs */
 .ImageTextPair {
 	display: flex;
-	flex-direction: row; /* Aligns items horizontally */
-	align-items: center; /* Centers items vertically */
-	gap: 5px; /* Space between the image and the text */
-	max-width: calc(
-		33.333% - 20px
-	); /* Adjust based on the container's padding and the desired gap */
+	flex-direction: row;
+	/* Aligns items horizontally */
+	gap: 5px;
+	/* Space between the image and the text */
+	max-width: calc(33.333% - 20px);
+	/* Adjust based on the container's padding and the desired gap */
 }
 
 .TopSmallImage {
-	height: 24px; /* Adjust height as needed */
-	width: auto; /* Maintain aspect ratio */
+	height: 24px;
+	/* Adjust height as needed */
+	width: auto;
+	filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(180deg) brightness(100%) contrast(100%);
 	margin-right: 4px;
+	margin-top: 2px;
+}
+
+.TopSmallStarImage {
+	height: 24px;
+	width: auto;
+	margin-right: 4px;
+	margin-top: 2px;
 }
 
 .TopSmallImageText {
@@ -168,5 +187,95 @@
 	font-weight: 700;
 	line-height: 24px;
 	color: #ffffff;
-	white-space: normal; /* Allow text to wrap */
+	white-space: normal;
+	/* Allow text to wrap */
+}
+
+.wontext {
+	font-family: 'Inter';
+	/* Body */
+	font-size: 11px;
+	line-height: 18px;
+	font-weight: 700;
+	color: #EFB034FF;
+	/* warning-500 */
+
+}
+
+
+.unityContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.buttonContainer {
+	position: relative;
+	/* This enables absolute positioning for child elements */
+	text-align: center;
+}
+
+
+
+.playButton {
+	position: absolute;
+	/* Position the button absolutely within topContainer */
+	bottom: -20px;
+	/* Adjust as needed to place the button at the end of the container */
+	left: 50%;
+	/* Center the button horizontally */
+	transform: translateX(-50%);
+	/* Offset the button by half its width to truly center it */
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	font-family: 'Inter';
+	font-size: 16px;
+	line-height: 26px;
+	font-weight: 700;
+	color: #FFFFFFFF;
+	/* white */
+	background: #F6B801FF;
+	/* primary-500 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 1;
+	border: none;
+	border-radius: 8px;
+	/* border-l */
+	width: 274px;
+	height: 44px;
+
+	/* Use this to ensure the button is visually on top if needed */
+	z-index: 10;
+}
+
+.historyContainer {
+	position: relative;
+	text-align: center;
+	font-family: 'Inter';
+	/* Body */
+	font-size: 16px;
+	line-height: 26px;
+	font-weight: 700;
+	color: #FFFFFFFF;
+	/* white */
+}
+
+.userName {
+	margin-bottom: 10px;
+}
+
+.userScore {
+	margin-bottom: 30px;
+}
+
+.loading {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
