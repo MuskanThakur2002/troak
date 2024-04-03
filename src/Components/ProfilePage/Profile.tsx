@@ -115,9 +115,6 @@ function Profile() {
     return null;
   }
 
-
-
-  // Function to handle input change for phone number
   const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
       ...userData,
@@ -139,18 +136,14 @@ function Profile() {
     } else {
       logout()
     }
-
   };
 
   const logoutApiCall = async () => {
     try {
-
       const sessionId = localStorage.getItem("sessionId");
-
       if (sessionId) {
         await userSignOut(sessionId);
       }
-
       logout();
     } catch (error) {
       logout();

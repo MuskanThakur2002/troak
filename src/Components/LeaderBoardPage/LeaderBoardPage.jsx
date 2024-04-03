@@ -22,7 +22,7 @@ const LeaderBoardPage = () => {
   const userName = localStorage.getItem("userName");
   const [userScore, setUserScore] = useState(0);
   const [loading, setLoading] = useState(false);
-
+  const [unityKey, setUnityKey] = useState(0);
   const [totalPlayer, setTotalPlayer] = useState(0);
   const [retryData, setRetryData] = useState(0);
   const [prize, setPrize] = useState(0);
@@ -32,6 +32,7 @@ const LeaderBoardPage = () => {
   const [gameTimeAvailable, setGameTimeAvailable] = useState(true);
   const historyPage = localStorage.getItem("page") == "history"
   const [showLoading, setShowLoading] = useState(false); // New state for controlling loading message visibility
+  const [playButton, setPlayButton] = useState(false); // New state for controlling loading message visibility
 
   const logout = () => {
     if (window.ReactNativeWebView) {
@@ -108,7 +109,6 @@ const LeaderBoardPage = () => {
   const fetchLeaderboardData = async () => {
     try {
       setLoading(true)
-
       if (sessionId) {
         const response = await getLeaderBoardDetails(sessionId, campaignId, localStorage.getItem("page"));
         if (response && response.data && response.data.data) {
@@ -117,7 +117,6 @@ const LeaderBoardPage = () => {
           setPrize(response.data.data.prize)
           tournamentGameEndTime(response.data.data.gameEndTime)
           setLoading(false)
-
         }
       } else {
         setLoading(false)
@@ -133,10 +132,16 @@ const LeaderBoardPage = () => {
 
 
   const handleBackClick = () => {
+    handleUnloadGame()
     navigate(-1);
   };
 
-  const { unityProvider, sendMessage, addEventListener, removeEventListener, loadingProgression, isLoaded } =
+  useEffect(() => {
+    fetchCampaignInfo();
+  }, []);
+
+
+  const { unityProvider, sendMessage, addEventListener, removeEventListener, loadingProgression, isLoaded, unload } =
     useUnityContext({
       loaderUrl: localStorage.getItem("loaderUrl"),
       dataUrl: localStorage.getItem("dataUrl"),
@@ -144,35 +149,52 @@ const LeaderBoardPage = () => {
       codeUrl: localStorage.getItem("codeUrl"),
     });
 
-  useEffect(() => {
-    fetchCampaignInfo();
-  }, []);
+  const handleUnloadGame = async () => {
+    if (isLoaded) {
+      try {
+        await unload();
+        console.log('Unity instance unloaded successfully.');
+      } catch (error) {
+        console.error('Error unloading Unity instance:', error);
+      } finally {
+        setOpenGame(false);
+        setUnityKey(prevKey => prevKey + 1);
+        setPlayButton(false);
+        setShowLoading(false);
+
+      }
+    }
+  };
+
+  const handleGameOver = useCallback(async (retry, score, bestscore, toQuit) => {
+    console.log(retry, score, bestscore, toQuit);
+    if (toQuit) {
+      await handleUnloadGame();
+    }
+    getGameScore(score, retry, bestscore)
+  }, [handleUnloadGame]);
 
 
   useEffect(() => {
     if (loadingProgression === 1) {
       setShowLoading(false);
+      if (playButton) {
+        handleImageClick()
+      }
     }
-  }, [loadingProgression]);
+  }, [loadingProgression, isLoaded]);
 
 
   const handleImageClick = () => {
+    setPlayButton(true)
     if (isLoaded) {
       setOpenGame(true)
       handleClickSpawnEnemies()
     } else {
-      console.log(loadingProgression, isLoaded)
-
+      setShowLoading(true);
     }
   };
 
-  const handleGameOver = useCallback((retry, score, bestscore, toQuit) => {
-    console.log(retry, score, bestscore, toQuit)
-    if (toQuit) {
-      setOpenGame(false)
-    }
-    getGameScore(score, retry, bestscore)
-  }, []);
 
   useEffect(() => {
     addEventListener("GameOver", handleGameOver);
@@ -196,13 +218,17 @@ const LeaderBoardPage = () => {
       {loading &&
         <div className={styles.loading}><Spin size="large" /></div>
       }
+      {showLoading && <div className={styles.loading}><Spin size="large" /></div>}
       {gameTimeAvailable &&
         <Unity unityProvider={unityProvider}
+          key={unityKey}
           style={{ visibility: openGame ? "visible" : "hidden" }}
           className={styles.unityContainer} />
       }
       {
-        (!(loading) && !openGame) &&
+        (
+          !loading &&
+          !openGame) &&
         <div>
           <div onClick={handleBackClick}>
             <img src={back} alt="Back" className={styles.backImage} />
