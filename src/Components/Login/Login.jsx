@@ -6,11 +6,14 @@ import jwt_decode from "jwt-decode";
 import { saveUser, signOut } from "../../Service/Auth/Auth";
 import { userLogin } from "../../Utilities/ApiHandler";
 import { GoogleLogin } from "@react-oauth/google";
+import { Spin } from 'antd';
 
 const Login = () => {
   const navigate = useNavigate();
   const { REACT_APP_HOSTED_DOMAIN } = process.env;
   const [showAnimationPostLogin, setShowAnimationPostLogin] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const handleMessage = (event) => {
       try {
@@ -42,6 +45,8 @@ const Login = () => {
   }, [showAnimationPostLogin]);
 
   const processSignIn = async ({ token, email }) => {
+    setLoading(true)
+
     try {
       const response = await userLogin(token);
       if (response.status === 200) {
@@ -54,18 +59,24 @@ const Login = () => {
 
         saveUser({ email, token, sessionId, troakId });
         setShowAnimationPostLogin(true)
+        setLoading(false)
 
         // navigate("/");
       } else {
+        setLoading(false)
         console.log("Failed to sign in");
       }
     } catch (error) {
+      setLoading(false)
+
       console.error("Error signing in:", error);
       // signOut();
     }
   };
 
   const signIn = async (credentialResponse) => {
+    setLoading(true)
+
     console.log(credentialResponse);
     const token = credentialResponse?.credential;
     const user = jwt_decode(token);
@@ -82,7 +93,10 @@ const Login = () => {
 
         console.log("Failed to sign in");
       }
+      setLoading(false)
+
     } catch (error) {
+      setLoading(false)
       console.error("Error signing in:", error);
     }
   };
@@ -102,6 +116,10 @@ const Login = () => {
 
   return (
     <div className={Styles.container}>
+      {loading &&
+        <div className={Styles.loading}><Spin size="large" /></div>
+      }
+
       {!showAnimationPostLogin && (
         <img
           className={Styles.loginImage}

@@ -9,15 +9,16 @@ export function setJwt(jwt) {
 }
 
 const getAPIErrorMessage = error => {
-  let { status } = ""
+  let status = "";
   if (error.response != undefined) {
-    status = error.response;
+    status = error.response.status; // Fixed to access the status property correctly
   } else {
     status = "500";
   }
   const errorClone = { ...error };
 
   if (isServerError(status)) {
+    // Assuming the structure supports directly assigning to `errorClone.response.data`
     errorClone.response.data = { error: SERVER_MESSAGE_500 };
   }
 
@@ -50,13 +51,16 @@ axios.interceptors.response.use(
 
 export { getAPIErrorMessage };
 
-const AxiosHandler = config => {
+
+const AxiosHandler = (config, customTimeout = 15000) => { // Default timeout of 5000ms, can be overridden
+  const configWithTimeout = { ...config, timeout: customTimeout };
+
   return new Promise((resolve, reject) => {
-    axios(config)
+    axios(configWithTimeout)
       .then(resolve)
       .catch(error => {
-        error = getAPIErrorMessage(error);
-        reject(error);
+        const modifiedError = getAPIErrorMessage(error);
+        reject(modifiedError);
       });
   });
 };

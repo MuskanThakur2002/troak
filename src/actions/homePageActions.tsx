@@ -1,5 +1,5 @@
-import { fetchHomePageDetails as fetchHomePageDetailsApi } from '../Utilities/ApiHandler'; // Import your API function
 import { Dispatch } from 'redux';
+import { fetchHomePageDetails as fetchHomePageDetailsApi } from '../Utilities/ApiHandler';
 import {
   HOME_PAGE_DETAILS_REQUEST,
   HOME_PAGE_DETAILS_SUCCESS,
@@ -25,9 +25,9 @@ export const homePageDetailsFailure = (error: string) => ({
 export const fetchHomePageDetails = (sessionId: string) => async (dispatch: Dispatch) => {
   dispatch(homePageDetailsRequest());
   try {
-    const response = await fetchHomePageDetailsApi(sessionId);
-    dispatch(homePageDetailsSuccess(response.data));
+    const response = await fetchHomePageDetailsApi(sessionId); // Assuming this function returns a Promise
+    dispatch(homePageDetailsSuccess(response.data)); // Assuming response contains data property
   } catch (error) {
-    dispatch(homePageDetailsFailure((error as Error).message));
+      dispatch(homePageDetailsFailure('Resource not found'));
   }
 };

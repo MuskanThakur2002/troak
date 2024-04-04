@@ -3,7 +3,6 @@ import {
   HOME_PAGE_DETAILS_SUCCESS,
   HOME_PAGE_DETAILS_FAILURE
 } from '../Constants/reduxConstants';
-
 interface HomePageState {
   loading: boolean;
   data: any | null;

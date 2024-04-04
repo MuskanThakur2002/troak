@@ -19,6 +19,7 @@ import { RootState } from '../../store';
 import { fetchHomePageDetails } from '../../actions/homePageActions';
 import { useNavigate } from "react-router-dom";
 import { Spin } from 'antd';
+import ErrorPopUp from "../PopUps/ErrorPopUp";
 
 interface UserData {
   name: string;
@@ -38,6 +39,21 @@ function Profile() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
+
+  const [popupOpen, setPopupOpen] = useState(false); // State to manage popup visibility
+
+  const handleClosePopup = () => {
+    setPopupOpen(false);
+  };
+
+
+  useEffect(() => {
+    if (error && !popupOpen) {
+      setPopupOpen(true);
+    }
+  }, [error]);
+
 
   const [activeIcon, setActiveIcon] = useState<string>("home");
 
@@ -172,6 +188,7 @@ function Profile() {
 
   return (
     <div className={styles.mainProfileContainer}>
+      {popupOpen && error && <ErrorPopUp onClose={handleClosePopup} />}
       {loading ? <div className={styles.loading}><Spin size="large" /></div> :
         <div className={styles.profile}>
           <div className={styles.rectangle}>

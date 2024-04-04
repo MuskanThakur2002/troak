@@ -1,5 +1,4 @@
 import styles from "./LeaderBoardPage.module.scss"; // Import the SCSS module
-import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import back from "../../images/back.svg";
 import heart from "../../images/heart.svg";
 import time from "../../images/stopwatch.svg";
@@ -10,6 +9,8 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 import coin from "../../images/trophy-star.png"
 import player from "../../images/publicIcon.jpg"
 import { Spin } from 'antd';
+import { useNavigate, useLocation } from 'react-router-dom';
+import ErrorPopUp from "../PopUps/ErrorPopUp";
 
 const LeaderBoardPage = () => {
 
@@ -33,6 +34,14 @@ const LeaderBoardPage = () => {
   const historyPage = localStorage.getItem("page") == "history"
   const [showLoading, setShowLoading] = useState(false); // New state for controlling loading message visibility
   const [playButton, setPlayButton] = useState(false); // New state for controlling loading message visibility
+
+
+  const [popupOpen, setPopupOpen] = useState(false); // State to manage popup visibility
+
+  const handleClosePopup = () => {
+    setPopupOpen(false);
+  };
+
 
   const logout = () => {
     if (window.ReactNativeWebView) {
@@ -62,7 +71,7 @@ const LeaderBoardPage = () => {
     }
   };
 
-  const getGameScore = async (gameScore, retryCount, bestscore) => {
+  const getGameScore = async (retryCount, bestscore) => {
     try {
       const sessionId = localStorage.getItem("sessionId");
 
@@ -93,6 +102,8 @@ const LeaderBoardPage = () => {
         if (response && response.data && response.data.data) {
           setRetryData(response.data.data.retryCount)
           setUserScore(response.data.data.gameScore)
+          setPrize(response.data.data.prizeMoney)
+          tournamentGameEndTime(response.data.data.gameEndTime)
           fetchLeaderboardData();
         }
       } else {
@@ -100,8 +111,9 @@ const LeaderBoardPage = () => {
         logout();
       }
     } catch (error) {
+      console.log(error)
       setLoading(false)
-
+      setPopupOpen(true);
       console.error("Error fetching leaderboard data:", error);
     }
   };
@@ -114,8 +126,6 @@ const LeaderBoardPage = () => {
         if (response && response.data && response.data.data) {
           setPlayers(response.data.data.userGameDetails)
           setTotalPlayer(response.data.data.totalPlayer)
-          setPrize(response.data.data.prize)
-          tournamentGameEndTime(response.data.data.gameEndTime)
           setLoading(false)
         }
       } else {
@@ -125,11 +135,10 @@ const LeaderBoardPage = () => {
       }
     } catch (error) {
       setLoading(false)
+      setPopupOpen(true);
       console.error("Error fetching leaderboard data:", error);
     }
   };
-
-
 
   const handleBackClick = () => {
     handleUnloadGame()
@@ -167,11 +176,11 @@ const LeaderBoardPage = () => {
   };
 
   const handleGameOver = useCallback(async (retry, score, bestscore, toQuit) => {
-    console.log(retry, score, bestscore, toQuit);
+    getGameScore(retry, bestscore)
+
     if (toQuit) {
       await handleUnloadGame();
     }
-    getGameScore(score, retry, bestscore)
   }, [handleUnloadGame]);
 
 
@@ -212,6 +221,32 @@ const LeaderBoardPage = () => {
   };
 
 
+  const handleUnloadUnity = async () => {
+    if (isLoaded && !showLoading && playButton && openGame) {
+      try {
+        await unload();
+        console.log('Unity instance unloaded successfully.');
+        navigate('/leaderboard');
+      } catch (error) {
+        console.error('Error unloading Unity instance:', error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleBackAttempt = () => {
+      if (isLoaded) {
+        handleUnloadUnity();
+      }
+    };
+
+    window.onpopstate = handleBackAttempt;
+
+    return () => {
+      window.onpopstate = null;
+    };
+  }, [isLoaded, handleUnloadUnity, navigate]);
+
   return (
 
     <>
@@ -219,6 +254,9 @@ const LeaderBoardPage = () => {
         <div className={styles.loading}><Spin size="large" /></div>
       }
       {showLoading && <div className={styles.loading}><Spin size="large" /></div>}
+
+      {popupOpen && <ErrorPopUp onClose={handleClosePopup} />}
+
       {gameTimeAvailable &&
         <Unity unityProvider={unityProvider}
           key={unityKey}
@@ -285,7 +323,7 @@ const LeaderBoardPage = () => {
           {!historyPage &&
 
             <div className={styles.buttonContainer} onClick={handleImageClick}>
-              <button className={styles.playButton}>Play</button>
+              <button className={styles.playButton} disabled={showLoading}>Play</button>
 
             </div>
           }

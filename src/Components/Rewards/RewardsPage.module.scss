@@ -1,3 +1,7 @@
+
+.upperContainer{
+  min-height: 100vh;
+}
 .pageContainer {
     padding: 20px;
     background: #ffffff;
@@ -9,8 +13,9 @@
     border-width: 1px;
     border-color: #DEE1E6FF;
     border-style: dashed;
-    margin-top: 20px;
+    margin-top: 40px;
     padding: 20px;
+    // margin-top: 10px;
 }
 
 .mainHeader {
@@ -192,13 +197,14 @@
 
 .backImage {
 	position:fixed;
-	top:10px;
-	left: 10px;
+	top:20px;
+	left: 20px;
 }
 
 .loading {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000; /* Adjust this value as needed */
 }

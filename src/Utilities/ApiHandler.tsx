@@ -8,8 +8,8 @@ const METHODS = {
   DELETE: "DELETE",
 };
 
-// const BASE_URL = API_ROOT;
-const BASE_URL = 'http://65.2.136.164:9092';
+const BASE_URL = API_ROOT;
+// const BASE_URL = 'http://65.2.136.164:9092';
 
 export const userLogin = async (accessToken: string) => {
   try {
@@ -28,20 +28,15 @@ export const userLogin = async (accessToken: string) => {
 };
 
 export const fetchHomePageDetails = async (sessionId: string) => {
-  try {
-    const response = await axiosHandler({
-      url: `${BASE_URL}/homePage`,
-      method: METHODS.GET,
-      headers: {
-        'Accept': 'application/json, text/plain',
-        'Session-Id': sessionId,
-      },
-    });
-    return response;
-
-  } catch (error) {
-    throw error;
-  }
+  const response = await axiosHandler({
+    url: `${BASE_URL}/homePage`,
+    method: METHODS.GET,
+    headers: {
+      'Accept': 'application/json, text/plain',
+      'Session-Id': sessionId,
+    },
+  });
+  return response;
 };
 
 export const getSessionId = async (accessToken: string) => {
@@ -122,8 +117,8 @@ export const getLeaderBoardDetails = async (sessionId: string, campaignId: strin
 
     let leaderUrl = `${BASE_URL}/campaign/${campaignId}/leaderBoard?count=50`
 
-    if(page=='history'){
-      leaderUrl=`${BASE_URL}/campaign/${campaignId}/leaderBoard?count=50&type=history`
+    if (page == 'history') {
+      leaderUrl = `${BASE_URL}/campaign/${campaignId}/leaderBoard?count=50&type=history`
     }
     const response = await axiosHandler({
       url: leaderUrl,
@@ -177,7 +172,6 @@ export const updateNotification = async (sessionId: string, messageId: string) =
 };
 
 export const fetchCampaignInfomation = async (sessionId: string, campaignId: string) => {
-  try {
     const response = await axiosHandler({
       url: `${BASE_URL}/campaign/${campaignId}/fetchCampaignInfo`,
       method: METHODS.GET,
@@ -187,9 +181,6 @@ export const fetchCampaignInfomation = async (sessionId: string, campaignId: str
       }
     });
     return response;
-  } catch (error) {
-    throw error;
-  }
 };
 
 export const postGameScore = async (sessionId: string, campaignId: string, gameScore: number, retryCount: number) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styles from "./HomePage.module.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell as farBell, faBars } from '@fortawesome/free-solid-svg-icons';
@@ -12,8 +12,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import SwipeableViews from 'react-swipeable-views';
-// Make sure you have imported the HomePageLiveCard correctly
 import { Spin } from 'antd';
+import ErrorPopUp from "../PopUps/ErrorPopUp";
 
 interface Game {
   gameName: string;
@@ -50,6 +50,19 @@ function HomePage() {
     setValue(newValue);
     localStorage.setItem("tabValue", newValue.toString());
   };
+
+  const [popupOpen, setPopupOpen] = useState(false);
+
+  const handleClosePopup = () => {
+    setPopupOpen(false);
+  };
+
+
+  useEffect(() => {
+    if (error && !popupOpen) {
+      setPopupOpen(true);
+    }
+  }, [error]);
 
   const handleChangeIndex = (index: number) => {
     setValue(index);
@@ -120,22 +133,50 @@ function HomePage() {
         }}
       >
         <div>
-          {value === 0 && data?.data?.tournament?.map((game: Game, index: number) => (
-            <HomePageLiveCard key={index} page="live" game={game} index={index} />
-          ))}
+          {value == 0 && (
+            (data?.data?.tournament?.length > 0) ? (
+              data.data.tournament.map((game: Game, index: number) => (
+                <HomePageLiveCard key={index} page="live" game={game} index={index} />
+              ))
+            ) : (
+              <div className={styles.emptyContainer}>No Live Campaigns</div>
+            )
+          )
+          }
         </div>
         <div>
-          {value === 1 && data?.data?.upcoming?.map((game: Game, index: number) => (
-            <HomePageLiveCard key={index} page="upcoming" game={game} index={index} />
-          ))}
+          {
+            value == 1 && (
+              data?.data?.upcoming?.length > 0 ? (
+                data.data.upcoming.map((game: Game, index: number) => (
+                  <HomePageLiveCard key={index} page="live" game={game} index={index} />
+                ))
+              ) : (
+                <div className={styles.emptyContainer}>No Upcoming Campaigns</div>
+              )
+            )
+          }
         </div>
         <div>
-          {value === 2 && data?.data?.history?.map((game: Game, index: number) => (
-            <HomePageLiveCard key={index} page="history" game={game} index={index} />
-          ))}
+          {
+
+            value == 2 && (
+              data?.data?.history?.length > 0 ? (
+                data.data.history.map((game: Game, index: number) => (
+                  <HomePageLiveCard key={index} page="live" game={game} index={index} />
+                ))
+              ) : (
+                <div className={styles.emptyContainer}>No Historical Campaigns</div>
+              )
+            )
+          }
         </div>
       </SwipeableViews>
+
+      {popupOpen && error && <ErrorPopUp onClose={handleClosePopup} />}
+
     </div>
+
 
   );
 }

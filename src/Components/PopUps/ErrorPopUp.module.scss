@@ -1,0 +1,94 @@
+@mixin innerContainer{
+    overflow: unset !important;
+    position: absolute;
+    left: 3%;
+    right: 3%;
+}
+
+.popupContainer {
+    background-color: rgba(0, 0, 0, 0.671);
+    z-index: 2000;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    position: fixed;
+}
+
+#outerContainer {
+    @include innerContainer;
+    margin-top: 60%;
+}
+
+.succesImage {
+    top: 172px;
+    left: 112px;
+    width: 130px;
+    height: 130px;
+    opacity: 1;
+    margin: 30px 0px 15px 0px;
+}
+
+.errorImage {
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+    margin: 10px;
+}
+
+
+.MDContainer {
+    box-shadow: 0px 10px 30px #00000091;
+    border: 1px solid #707070;
+    border-radius: 20px;
+    opacity: 1;
+    background: #FFFFFFFF 0% 0% no-repeat padding-box;
+}
+
+#successInnerText {
+    text-align: center;
+    padding: 20px 20px 30px 20px;
+}
+
+#imageDirection {
+    display: flex;
+    flex-direction: row-reverse;
+    cursor: pointer;
+    padding: 10px 10px 0px 10px
+}
+
+
+.successButtonForPopUp {
+    background: #F6B801FF; /* primary-500 */
+    font-weight: 700;
+    text-align: center;
+    font: normal normal normal 14px/16px "Kanit";
+    color: #FFFFFF;
+    opacity: 1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 15px;
+    width: 90px;
+
+}
+
+.juspayHeader {
+    text-align: center;
+    font: normal normal normal 18px/22px "Kanit";
+    letter-spacing: 0px;
+    color: #4D5870;
+    opacity: 1;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+
+.juspayText {
+    text-align: center;
+    font: normal normal 300 14px/18px "Kanit";
+    letter-spacing: 0px;
+    color: #414141;
+    opacity: 1;
+    padding-bottom: 20px;
+}
+

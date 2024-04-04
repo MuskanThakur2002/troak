@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { getNotification } from "../../Utilities/ApiHandler";
 import Header from "../Header/Header";
 import { Spin } from 'antd';
+import ErrorPopUp from "../PopUps/ErrorPopUp";
 
 interface Notification {
   body: string;
@@ -18,13 +19,13 @@ interface Notification {
 }
 
 const NotificationBar: React.FC = () => {
-  const navigate = useNavigate();
   const sessionId = localStorage.getItem("sessionId");
   const [loading, setLoading] = useState<boolean>(true);
   const [allNotifications, setAllNotifications] = useState<Notification[]>([]);
+  const [popupOpen, setPopupOpen] = useState(false); // State to manage popup visibility
 
-  const handleBackClick = () => {
-    navigate(-1);
+  const handleClosePopup = () => {
+    setPopupOpen(false); // Close the popup by updating the state
   };
 
   useEffect(() => {
@@ -34,13 +35,13 @@ const NotificationBar: React.FC = () => {
           console.error("Session ID not found");
           return;
         }
-
         const response = await getNotification(sessionId);
         console.log(response);
         if (response?.data?.data) {
           setAllNotifications(response?.data?.data);
         }
       } catch (error) {
+        setPopupOpen(true);
         console.error("Error fetching notifications:", error);
       } finally {
         setLoading(false);
@@ -93,23 +94,36 @@ const NotificationBar: React.FC = () => {
     <div className={styles.notificationBar}>
 
       <Header HeaderName={"Notifications"} />
+      {popupOpen && <ErrorPopUp onClose={handleClosePopup} />}
+
       {loading ? (
         <div className={styles.loading}><Spin size="large" /></div>
       ) : (
-        Object.entries(groupedNotifications).map(([date, notifications]) => (
+        Object.entries(groupedNotifications).length <= 0 ?
+            <div className={styles.emptyContainer}>
+              No Notification</div>
+          :
           <>
-            <div className={styles.todayText}>{date}</div>
-            {notifications.map((notification) => (
-              <NotificationCard
-                key={notification.messageId}
-                notification={notification}
-              />
+            {Object.entries(groupedNotifications).map(([date, notifications]) => (
+              <>
+                <div className={styles.todayText}>{date}</div>
+                {notifications.map((notification) => (
+                  <NotificationCard
+                    key={notification.messageId}
+                    notification={notification}
+                  />
+                ))}
+              </>
             ))}
           </>
-        ))
-      )}
+
+      )
+      }
+
+
 
     </div>
+
   );
 };
 
