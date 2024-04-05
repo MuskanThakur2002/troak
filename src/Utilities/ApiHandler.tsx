@@ -8,8 +8,8 @@ const METHODS = {
   DELETE: "DELETE",
 };
 
-const BASE_URL = API_ROOT;
-// const BASE_URL = 'http://65.2.136.164:9092';
+// const BASE_URL = API_ROOT;
+const BASE_URL = 'http://65.2.136.164:9092';
 
 export const userLogin = async (accessToken: string) => {
   try {

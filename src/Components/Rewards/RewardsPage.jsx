@@ -86,17 +86,17 @@ const RewardsPage = () => {
                 </div>
                 <div className={styles.summary}>
                   <div className={styles.totalValue}>
-                    Total Value ({rewardsData.rewardsCount})
-                    <span className={styles.totalValueAmount} style={{ lineHeight: "30px" }}>₹{rewardsData.totalAmount}</span>
+                    Total Value ({rewardsData.rewardsCount ? rewardsData.rewardsCount : 0})
+                    <span className={styles.totalValueAmount} style={{ lineHeight: "30px" }}>₹{rewardsData.totalAmount ? rewardsData.totalAmount : 0}</span>
                   </div>
                   <div className={styles.rewards}>
                     Rewards
-                    <span style={{ lineHeight: "30px" }}>{rewardsData.rewardsCount}</span>
+                    <span style={{ lineHeight: "30px" }}>{rewardsData.rewardsCount ? rewardsData.rewardsCount : 0}</span>
                   </div>
                 </div>
               </div>
 
-              {rewardsData.rewardsCount == 0 ?
+              {(rewardsData.rewardsCount == 0 || rewardsData.rewardsCount == null || rewardsData.rewardsCount == undefined) ?
 
                 <div className={styles.middleContainer}>
                   No Rewards

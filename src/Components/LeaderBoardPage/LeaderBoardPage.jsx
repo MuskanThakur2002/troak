@@ -34,9 +34,13 @@ const LeaderBoardPage = () => {
   const historyPage = localStorage.getItem("page") == "history"
   const [showLoading, setShowLoading] = useState(false); // New state for controlling loading message visibility
   const [playButton, setPlayButton] = useState(false); // New state for controlling loading message visibility
-
-
   const [popupOpen, setPopupOpen] = useState(false); // State to manage popup visibility
+
+  const [currentUserName, setCurrentUserName] = useState(""); // New state for controlling loading message visibility
+  const [currentRank, setCurrentRank] = useState(0); // New state for controlling loading message visibility
+  const [currentProfileImage, setCurrentProfileImage] = useState(""); // New state for controlling loading message visibility
+
+  const [currentUserScore, setCurrentUserScore] = useState(0); // State to manage popup visibility
 
   const handleClosePopup = () => {
     setPopupOpen(false);
@@ -127,6 +131,10 @@ const LeaderBoardPage = () => {
           setPlayers(response.data.data.userGameDetails)
           setTotalPlayer(response.data.data.totalPlayer)
           setLoading(false)
+          setCurrentUserName(response.data.data.currentUserName)
+          setCurrentRank(response.data.data.rank)
+          setCurrentProfileImage(response.data.data.profileImage)
+          setCurrentUserScore(response.data.data.score)
         }
       } else {
         setLoading(false)
@@ -222,11 +230,13 @@ const LeaderBoardPage = () => {
 
 
   const handleUnloadUnity = async () => {
-    if (isLoaded && !showLoading && playButton && openGame) {
+    if (isLoaded) {
       try {
         await unload();
         console.log('Unity instance unloaded successfully.');
-        navigate('/leaderboard');
+        if (!showLoading && playButton && openGame) {
+          navigate('/leaderboard');
+        }
       } catch (error) {
         console.error('Error unloading Unity instance:', error);
       }
@@ -320,8 +330,7 @@ const LeaderBoardPage = () => {
             }
 
           </div>
-          {!historyPage &&
-
+          {!historyPage && retryData > 0 &&
             <div className={styles.buttonContainer} onClick={handleImageClick}>
               <button className={styles.playButton} disabled={showLoading}>Play</button>
 
@@ -330,6 +339,25 @@ const LeaderBoardPage = () => {
 
           <div className={styles.container}>
             <div className={styles.text}>Tournament Leaderboard</div>
+
+
+            {currentUserName && <div className={styles.currentUserDetails}>
+              <div className={styles.currentUserInnerContainer}>
+                <span className={styles.id} id={styles.space}>
+                  {currentRank}
+                </span>
+
+                {currentProfileImage && <img src={`data:image/svg+xml;base64,${currentProfileImage}`} id={styles.space} alt="Profile" className={styles.image} />}
+
+                <span id={styles.space} className={styles.name}>
+                  <div>{currentUserName}</div>
+                </span>
+                <span id={styles.spacePoints} className={styles.points}>
+                  {currentUserScore}
+                </span>
+
+              </div>
+            </div>}
 
             {players && players.map(player => (
               <div className={styles.userDetails} key={player.rank}>
